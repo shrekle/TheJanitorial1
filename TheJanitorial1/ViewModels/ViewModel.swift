@@ -11,6 +11,5 @@ import FirebaseAuth
 class ViewModel: ObservableObject {
     
     @Published var isRegistrationSheetPresented = false
-    @Published var isLoggedIn = false
     
 }

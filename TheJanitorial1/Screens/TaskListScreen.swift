@@ -18,7 +18,7 @@ struct TaskListScreen: View {
             Text("add a task!")
                 .padding()
             Button {
-                model.isLoggedIn = false
+             
                 AuthViewModel.logOut()
             } label: {
                 Image(systemName: "plus.circle.fill")

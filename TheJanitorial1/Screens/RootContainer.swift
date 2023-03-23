@@ -16,6 +16,8 @@ struct RootContainer: View {
     
     @EnvironmentObject var model: ViewModel
     
+    @State var isLoggedIn = AuthViewModel.isUserLoggedIn()
+    
     var body: some View {
         ZStack {
             
@@ -24,10 +26,10 @@ struct RootContainer: View {
 
             VStack {
                 
-                if model.isLoggedIn {
+                if isLoggedIn {
                     TaskListScreen()
                 } else {
-                    LoginScreen()
+                    LoginScreen(isLoggedIn: $isLoggedIn)
                 }
 //                switch status {
 //                case true:

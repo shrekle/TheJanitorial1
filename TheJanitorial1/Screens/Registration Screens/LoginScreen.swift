@@ -17,6 +17,8 @@ struct LoginScreen: View {
     
     @EnvironmentObject var model: ViewModel
     
+    @Binding var isLoggedIn: Bool
+    
     @State private var nameTxtF = ""
     @State private var passwordTxtF = ""
     
@@ -34,11 +36,12 @@ struct LoginScreen: View {
                     TextField("Username/Email", text: $nameTxtF)
                         .textFieldStyle(CreateProfileTextfieldStyle())
                     
-                    TextField("Password", text: $passwordTxtF)
+                    SecureField("Password", text: $passwordTxtF)
                         .textFieldStyle(CreateProfileTextfieldStyle())
                     
                     Button {
-                        
+//                    TODO: verification process of signing in with the email and password
+                        isLoggedIn = true
                     } label: {
                         Text("Login")
                     }
@@ -50,7 +53,7 @@ struct LoginScreen: View {
                     }
                 }
                 .sheet(isPresented: $model.isRegistrationSheetPresented) {
-                    RegistrationContainerView()
+                    RegistrationContainerView(isLoggedIn: $isLoggedIn)
                         .presentationDragIndicator(.visible)
                         
                 }
@@ -63,6 +66,6 @@ struct LoginScreen: View {
 
 struct LoginScreen_Previews: PreviewProvider {
     static var previews: some View {
-        LoginScreen()
+        LoginScreen(isLoggedIn: .constant(true))
     }
 }

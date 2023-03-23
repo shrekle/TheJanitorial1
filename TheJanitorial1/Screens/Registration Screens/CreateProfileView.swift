@@ -81,7 +81,7 @@ struct CreateProfileView: View {
             
                 DatabaseService.setUserProfile(firstName: firstName, lastName: lastName, image: selectedImage) { isSuccess in
                     if isSuccess {
-                        model.isLoggedIn = true
+                        
                         currentStep = .allSet
                     } else {
                         print("💩 loading failed")

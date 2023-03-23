@@ -11,6 +11,8 @@ struct AllSetView: View {
     
     @EnvironmentObject var model: ViewModel
     
+    @Binding var isLoggedIn: Bool
+    
     var body: some View {
         
         VStack {
@@ -30,6 +32,7 @@ struct AllSetView: View {
             Spacer()
             
             Button {
+                isLoggedIn = true
                 model.isRegistrationSheetPresented = false
             } label: {
                 Text("Continue over to cracking the whip on the janitor!!!")
@@ -43,6 +46,6 @@ struct AllSetView: View {
 
 struct SyncContactsView_Previews: PreviewProvider {
     static var previews: some View {
-        AllSetView()
+        AllSetView(isLoggedIn: .constant(true))
     }
 }
