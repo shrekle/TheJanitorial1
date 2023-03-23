@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct TheJanitorial1App: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
+    
     var body: some Scene {
         WindowGroup {
-            RegisterScreen()
+            RootContainer()
+                .environmentObject(ViewModel())
         }
     }
 }
+
+
