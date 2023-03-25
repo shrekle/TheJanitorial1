@@ -19,7 +19,7 @@
 		CA3C4F3329CAA39B00CCDF20 /* RegistrationContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3229CAA39B00CCDF20 /* RegistrationContainerView.swift */; };
 		CA3C4F3629CB68DF00CCDF20 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3529CB68DF00CCDF20 /* DatabaseService.swift */; };
 		CA3C4F3829CB725D00CCDF20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3729CB725C00CCDF20 /* User.swift */; };
-		CA3C4F3A29CB7CC500CCDF20 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3929CB7CC500CCDF20 /* ViewModel.swift */; };
+		CA3C4F3A29CB7CC500CCDF20 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3929CB7CC500CCDF20 /* LoginViewModel.swift */; };
 		CA3C4F3C29CBB84600CCDF20 /* RootContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3B29CBB84600CCDF20 /* RootContainer.swift */; };
 		CA3C4F4029CBF20700CCDF20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA3C4F3F29CBF20700CCDF20 /* GoogleService-Info.plist */; };
 		CA4784A529C2488800FDF4F1 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */; };
@@ -48,7 +48,7 @@
 		CA3C4F3229CAA39B00CCDF20 /* RegistrationContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationContainerView.swift; sourceTree = "<group>"; };
 		CA3C4F3529CB68DF00CCDF20 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		CA3C4F3729CB725C00CCDF20 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		CA3C4F3929CB7CC500CCDF20 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CA3C4F3929CB7CC500CCDF20 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CA3C4F3B29CBB84600CCDF20 /* RootContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainer.swift; sourceTree = "<group>"; };
 		CA3C4F3F29CBF20700CCDF20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		CA4784A229C2471B00FDF4F1 /* TheJanitorial1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheJanitorial1.entitlements; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */,
-				CA3C4F3929CB7CC500CCDF20 /* ViewModel.swift */,
+				CA3C4F3929CB7CC500CCDF20 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -291,7 +291,7 @@
 				CA3C4F3829CB725D00CCDF20 /* User.swift in Sources */,
 				CA3C4F1E29CA58B500CCDF20 /* CreateProfileTextfieldStyle.swift in Sources */,
 				CA3C4F3329CAA39B00CCDF20 /* RegistrationContainerView.swift in Sources */,
-				CA3C4F3A29CB7CC500CCDF20 /* ViewModel.swift in Sources */,
+				CA3C4F3A29CB7CC500CCDF20 /* LoginViewModel.swift in Sources */,
 				CA4784A529C2488800FDF4F1 /* AuthViewModel.swift in Sources */,
 				CA3C4F2429CA5CFF00CCDF20 /* TextHelper.swift in Sources */,
 				CA3C4F2629CA5E1100CCDF20 /* VerificationView.swift in Sources */,

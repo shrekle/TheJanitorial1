@@ -8,8 +8,14 @@
 import Foundation
 import FirebaseAuth
 
-class ViewModel: ObservableObject {
+enum currentStatus: Int {
+    case isloggedIn = 0
+    case isloggedOut = 1
+}
+
+class LoginViewModel: ObservableObject {
     
+    @Published var loginStatus: currentStatus = .isloggedOut
     @Published var isRegistrationSheetPresented = false
     
 }

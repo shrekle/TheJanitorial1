@@ -17,7 +17,7 @@ struct TheJanitorial1App: App {
     var body: some Scene {
         WindowGroup {
             RootContainer()
-                .environmentObject(ViewModel())
+                .environmentObject(LoginViewModel())
         }
     }
 }

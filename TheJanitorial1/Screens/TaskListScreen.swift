@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TaskListScreen: View {
     
-    @EnvironmentObject var model: ViewModel
+    @EnvironmentObject var model: LoginViewModel
     
     var body: some View {
         
@@ -35,5 +35,6 @@ struct TaskListScreen: View {
 struct TaskListScreen_Previews: PreviewProvider {
     static var previews: some View {
         TaskListScreen()
+            .environmentObject(LoginViewModel())
     }
 }

@@ -17,8 +17,7 @@ enum registrationStep: Int {
 struct RegistrationContainerView: View {
     
     @State var currentStep: registrationStep = .phoneNumber
-    @Binding var isLoggedIn: Bool
-    
+   
     var body: some View {
         ZStack {
             
@@ -34,7 +33,7 @@ struct RegistrationContainerView: View {
             case .profile:
                 CreateProfileView(currentStep: $currentStep)
             case .allSet:
-                AllSetView(isLoggedIn: $isLoggedIn)
+                AllSetView()
             }
         }
     }
@@ -42,6 +41,6 @@ struct RegistrationContainerView: View {
 
 struct RegistrationContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationContainerView(isLoggedIn: .constant(true))
+        RegistrationContainerView()
     }
 }

@@ -29,7 +29,7 @@ struct VerificationView: View {
             //MARK: - TEXTFIELD
             ZStack {
                 HStack  {
-                    TextField("", text: $verificationCode)
+                    TextField("Enter your code here Big Dawg", text: $verificationCode)
                         .font(.callout)
                         .keyboardType(.numberPad)
                         .onReceive(Just(verificationCode)) { _ in

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateProfileView: View {
         
-    @EnvironmentObject var model: ViewModel
+    @EnvironmentObject var model: LoginViewModel
     
     @Binding var currentStep: registrationStep
     

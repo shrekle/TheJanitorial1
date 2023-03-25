@@ -7,16 +7,10 @@
 
 import SwiftUI
 
-enum currentStatus: Int {
-    case loggedIn = 0
-    case loggedOut = 1
-}
-
 struct RootContainer: View {
     
-    @EnvironmentObject var model: ViewModel
+    @EnvironmentObject var model: LoginViewModel
     
-    @State var isLoggedIn = AuthViewModel.isUserLoggedIn()
     
     var body: some View {
         ZStack {
@@ -26,17 +20,17 @@ struct RootContainer: View {
 
             VStack {
                 
-                if isLoggedIn {
-                    TaskListScreen()
-                } else {
-                    LoginScreen(isLoggedIn: $isLoggedIn)
-                }
-//                switch status {
-//                case true:
+//                if isLoggedIn {
 //                    TaskListScreen()
-//                case false:
-//                    LoginScreen()
+//                } else {
+//                    LoginScreen(isLoggedIn: $isLoggedIn)
 //                }
+                switch model.loginStatus {
+                case .isloggedIn:
+                    TaskListScreen()
+                case .isloggedOut:
+                    LoginScreen()
+                }
             }
         }
     }
@@ -45,5 +39,6 @@ struct RootContainer: View {
 struct RootContainer_Previews: PreviewProvider {
     static var previews: some View {
         RootContainer()
+            .environmentObject(LoginViewModel())
     }
 }

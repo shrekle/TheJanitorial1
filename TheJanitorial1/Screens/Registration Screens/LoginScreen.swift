@@ -15,9 +15,7 @@ struct LoginScreen: View {
     
     /// command+shift+F, to look up something in the entire project
     
-    @EnvironmentObject var model: ViewModel
-    
-    @Binding var isLoggedIn: Bool
+    @EnvironmentObject var model: LoginViewModel
     
     @State private var nameTxtF = ""
     @State private var passwordTxtF = ""
@@ -25,8 +23,8 @@ struct LoginScreen: View {
 //    @State private var isRegisterSheetPresented = false
     
     var body: some View {
-        NavigationStack {
-            
+        
+        NavigationStack {    
             ZStack {
                 Color(.lightGray)
                     .opacity(0.05)
@@ -41,7 +39,7 @@ struct LoginScreen: View {
                     
                     Button {
 //                    TODO: verification process of signing in with the email and password
-                        isLoggedIn = true
+                        model.loginStatus = .isloggedIn
                     } label: {
                         Text("Login")
                     }
@@ -53,19 +51,18 @@ struct LoginScreen: View {
                     }
                 }
                 .sheet(isPresented: $model.isRegistrationSheetPresented) {
-                    RegistrationContainerView(isLoggedIn: $isLoggedIn)
+                    RegistrationContainerView()
                         .presentationDragIndicator(.visible)
-                        
                 }
                 .padding()
             }
         }
-        
     }
 }
 
 struct LoginScreen_Previews: PreviewProvider {
     static var previews: some View {
-        LoginScreen(isLoggedIn: .constant(true))
+        LoginScreen()
+            .environmentObject(LoginViewModel())
     }
 }
