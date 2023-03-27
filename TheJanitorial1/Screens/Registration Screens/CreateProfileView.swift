@@ -42,6 +42,7 @@ struct CreateProfileView: View {
             Button {
                 isSourceMenuShowing = true
             } label: {
+//            TODO: extract this into a view
                 ZStack {    //  camara circle
                     if let selectedImage {
                         Image(uiImage: selectedImage)

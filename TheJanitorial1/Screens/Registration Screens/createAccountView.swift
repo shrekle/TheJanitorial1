@@ -1,5 +1,5 @@
 //
-//  VerificationView.swift
+//  createAccountView.swift
 //  chatAppCWC
 //
 //  Created by adrian garcia on 3/15/23.
@@ -12,59 +12,87 @@ struct createAccountView: View {
     
     @Binding var currentStep: registrationStep
     
-    @State var verificationCode = ""
+    @State var email = ""
+    @State var password = ""
     
     var body: some View {
         
         VStack {
             
-            Text("Verification")
+            Text("Create Your Account")
                 .font(.largeTitle)
                 .padding(.top, 52)
-            
-            Text("Enter your code here...dawg")
-                .font(.callout)
-                .padding(.top, 12)
-            
+           
             //MARK: - TEXTFIELD
             ZStack {
                 HStack  {
-                    TextField("Enter your code here Big Dawg", text: $verificationCode)
+                    //TODO: Maybe run validation for email format...regex or some crap
+                    TextField("Enter your Email", text: $email)
                         .font(.callout)
-                        .keyboardType(.numberPad)
-                        .onReceive(Just(verificationCode)) { _ in
-                            TextHelper.limitText(&verificationCode, 6)
+                        .keyboardType(.emailAddress)
+                        .onReceive(Just(email)) { x in
+                            email = TextHelper.sanitizeEmail(x)
                         }
+                    
+                    Spacer()
+                    
+                    //MARK: - X button
+//                TODO: put this in the textfield style or make it into a view
+                    Button {
+                        email = ""
+                    } label: {
+                        Image(systemName: "multiply.circle.fill")
+                            .foregroundColor(Color(.lightGray))
+                    }
+                }
+                .padding()
+            }// Zstack Textfiled
+            .textFieldStyle(CreateProfileTextfieldStyle())
+            .padding(.top, 34)
+            
+            ZStack {
+                HStack  {
+                    //TODO: Maybe run validation for email format...regex or some crap
+                    SecureField("Choose your password", text: $password)
+                        .font(.callout)
                         .textFieldStyle(CreateProfileTextfieldStyle())
                     
                     Spacer()
                     
-                    //MARK: - textfield button
+                    //MARK: - X button
+//                TODO: put this in the textfield style or make it into a view
                     Button {
-                        verificationCode = ""
+                        password = ""
                     } label: {
                         Image(systemName: "multiply.circle.fill")
+                            .foregroundColor(Color(.lightGray))
                     }
-                    .tint(Color("iconsInputField"))
-                    .frame(width: 19, height: 19)
                 }
                 .padding()
             }// Zstack Textfiled
-            .padding(.top, 34)
+            .textFieldStyle(CreateProfileTextfieldStyle())
             
             Spacer()
             
             //MARK: - next button
             Button {
                 //send verification code to firebase
-                AuthViewModel.verifyCode(verificationCode: verificationCode) { error in
-                    if error == nil {
+                Task {
+                    do {
+                        try await RegistrationViewModel.signUp(email: email, password: password)
                         currentStep = .profile
-                    } else {
-                        //                            TODO: SHOW ERROR message
-                        print("🤬 error verification button")
+                    } catch {
+                        print("🐞 error signing up user: \(error)")
                     }
                 }
+//                AuthViewModel.verifyCode(verificationCode: email) { error in
+//                    if error == nil {
+//                        currentStep = .profile
+//                    } else {
+//                        //                            TODO: SHOW ERROR message
+//                        print("🤬 error verification button")
+//                    }
+//                }
             } label: {
                 Text("Next")
             }
@@ -76,7 +104,7 @@ struct createAccountView: View {
 
 struct VerificationView_Previews: PreviewProvider {
     static var previews: some View {
-        VerificationView(currentStep: .constant(.verification))
+        createAccountView(currentStep: .constant(.createAccount))
     }
 }
 

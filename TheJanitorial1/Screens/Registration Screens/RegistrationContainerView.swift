@@ -15,7 +15,7 @@ enum registrationStep: Int {
 
 struct RegistrationContainerView: View {
     
-    @State var currentStep: registrationStep = .verification
+    @State var currentStep: registrationStep = .createAccount
    
     var body: some View {
         ZStack {
@@ -25,7 +25,6 @@ struct RegistrationContainerView: View {
                 .ignoresSafeArea()
             
             switch currentStep {
-            
             case .createAccount:
                 createAccountView(currentStep: $currentStep)
             case .profile:

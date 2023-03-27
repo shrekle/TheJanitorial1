@@ -8,12 +8,8 @@
 import SwiftUI
 
 /// use the tutorial from sean allen swiftUI form, it has all that i need to make the request form for teachers to fill out and send me with a task
-///
-//TODO:  have the default screen be the log in if user is signed out, user is logged in then normal tasklist screen
 
 struct LoginScreen: View {
-    
-    /// command+shift+F, to look up something in the entire project
     
     @EnvironmentObject var model: LoginViewModel
     

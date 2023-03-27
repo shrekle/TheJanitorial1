@@ -26,6 +26,10 @@ final class AuthViewModel {
         Auth.auth().currentUser?.phoneNumber ?? ""
     }
     
+    static func getUserEmail()-> String {
+        Auth.auth().currentUser?.email ?? ""
+    }
+    
     static func sendPhoneNumber(_ phoneNumber: String, completion: @escaping (Error?)-> Void) {
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
             guard error == nil else { print("error sending number: \(String(describing: error))"); return }

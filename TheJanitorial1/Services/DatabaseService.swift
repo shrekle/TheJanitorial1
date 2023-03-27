@@ -11,8 +11,6 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 
 class DatabaseService {
-   
-    
     
     static func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping (Bool)-> Void) {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }
@@ -21,14 +19,15 @@ class DatabaseService {
         let storageRef = Storage.storage().reference()
         
         let userId = AuthViewModel.getLoggedInUserId()
-        let userPhoneNumber = AuthViewModel.getUserPhoneNumber()
+        let userEmail = AuthViewModel.getUserEmail()
+        //        let userPhoneNumber = AuthViewModel.getUserPhoneNumber()
         
         let doc = db.collection("users").document(userId)
         
-        doc.setData(["firstName": firstName, "lastName": lastName, "phoneNumber": userPhoneNumber])
+        doc.setData(["firstName": firstName, "lastName": lastName, "email": userEmail])
         
         if let image {
-            let dataImage = image.jpegData(compressionQuality: 0.5)
+            let dataImage = image.jpegData(compressionQuality: 0.1)
             
             guard let dataImage else {print("🤬 dataImage is homo"); return }
             
