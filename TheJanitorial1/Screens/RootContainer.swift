@@ -19,12 +19,6 @@ struct RootContainer: View {
                 .opacity(0.05)
 
             VStack {
-                
-//                if isLoggedIn {
-//                    TaskListScreen()
-//                } else {
-//                    LoginScreen(isLoggedIn: $isLoggedIn)
-//                }
                 switch model.loginStatus {
                 case .isloggedIn:
                     TaskListScreen()

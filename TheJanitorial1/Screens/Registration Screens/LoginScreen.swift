@@ -17,7 +17,7 @@ struct LoginScreen: View {
     
     @EnvironmentObject var model: LoginViewModel
     
-    @State private var nameTxtF = ""
+    @State private var emailTxtF = ""
     @State private var passwordTxtF = ""
     
 //    @State private var isRegisterSheetPresented = false
@@ -25,13 +25,13 @@ struct LoginScreen: View {
     var body: some View {
         
         NavigationStack {    
-            ZStack {
+                ZStack {
                 Color(.lightGray)
                     .opacity(0.05)
                     .ignoresSafeArea()
                 
                 VStack {
-                    TextField("Username/Email", text: $nameTxtF)
+                    TextField("Username/Email", text: $emailTxtF)
                         .textFieldStyle(CreateProfileTextfieldStyle())
                     
                     SecureField("Password", text: $passwordTxtF)
@@ -39,7 +39,16 @@ struct LoginScreen: View {
                     
                     Button {
 //                    TODO: verification process of signing in with the email and password
-                        model.loginStatus = .isloggedIn
+                        Task {
+                            do {
+                                try await model.signIn(email: emailTxtF, password: passwordTxtF)
+                                // not too sure if this will execute even if sign in fails, with this new async await 
+                                model.loginStatus = .isloggedIn
+                            } catch {
+                                print("💩 error signing up: \(error)")
+                            }
+                        }
+                       
                     } label: {
                         Text("Login")
                     }

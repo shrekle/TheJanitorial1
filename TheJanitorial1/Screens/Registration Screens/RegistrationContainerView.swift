@@ -8,15 +8,14 @@
 import SwiftUI
 
 enum registrationStep: Int {
-    case phoneNumber = 0
-    case verification = 1
+    case createAccount = 1
     case profile = 2
     case allSet = 3
 }
 
 struct RegistrationContainerView: View {
     
-    @State var currentStep: registrationStep = .phoneNumber
+    @State var currentStep: registrationStep = .verification
    
     var body: some View {
         ZStack {
@@ -26,10 +25,9 @@ struct RegistrationContainerView: View {
                 .ignoresSafeArea()
             
             switch currentStep {
-            case .phoneNumber:
-                PhoneNumberScreen(currentStep: $currentStep)
-            case .verification:
-                VerificationView(currentStep: $currentStep)
+            
+            case .createAccount:
+                createAccountView(currentStep: $currentStep)
             case .profile:
                 CreateProfileView(currentStep: $currentStep)
             case .allSet:

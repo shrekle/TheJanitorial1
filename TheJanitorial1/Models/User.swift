@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import FirebaseFirestoreSwift
 
 struct User: Codable {
@@ -15,3 +16,18 @@ struct User: Codable {
     var phoneNumber: String?
     var image: String?
 }
+
+//struct AuthDataResultModel {
+//    let uid: String
+//    let email: String?
+//    let photo: String?
+//    let phone: String?
+//
+//    // it knows what type User is because it comes from the firebaseAuth sdk
+//    init(user: User) {
+//        self.uid = user.uid
+//        self.email = user.email
+//        self.photo = user.photoURL?.absoluteString
+//        self.phone = user.phoneNumber
+//    }
+//}

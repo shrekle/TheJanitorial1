@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct VerificationView: View {
+struct createAccountView: View {
     
     @Binding var currentStep: registrationStep
     
