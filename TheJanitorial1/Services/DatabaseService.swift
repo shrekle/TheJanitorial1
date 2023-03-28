@@ -12,7 +12,7 @@ import FirebaseStorage
 
 class DatabaseService {
     
-    static func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping (Bool)-> Void) {
+    static func setUserProfile(fullName: String, image: UIImage?, completion: @escaping (Bool)-> Void) {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }
         
         let db = Firestore.firestore() // this needs to be here since its a static func, cant be a class property
@@ -24,7 +24,7 @@ class DatabaseService {
         
         let doc = db.collection("users").document(userId)
         
-        doc.setData(["firstName": firstName, "lastName": lastName, "email": userEmail])
+        doc.setData(["fullName": fullName, "email": userEmail])
         
         if let image {
             let dataImage = image.jpegData(compressionQuality: 0.1)

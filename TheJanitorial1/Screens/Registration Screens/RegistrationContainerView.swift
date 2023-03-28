@@ -9,8 +9,7 @@ import SwiftUI
 
 enum registrationStep: Int {
     case createAccount = 1
-    case profile = 2
-    case allSet = 3
+    case allSet = 2
 }
 
 struct RegistrationContainerView: View {
@@ -21,14 +20,12 @@ struct RegistrationContainerView: View {
         ZStack {
             
             Color(.lightGray) // use school colors, maybe yellow or blue
-                .opacity(0.05)
+                .opacity(0.1)
                 .ignoresSafeArea()
             
             switch currentStep {
             case .createAccount:
                 createAccountView(currentStep: $currentStep)
-            case .profile:
-                CreateProfileView(currentStep: $currentStep)
             case .allSet:
                 AllSetView()
             }

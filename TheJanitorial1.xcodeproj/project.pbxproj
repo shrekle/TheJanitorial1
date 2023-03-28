@@ -11,7 +11,6 @@
 		CA3C4F2129CA5AC200CCDF20 /* OnboardingStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2029CA5AC200CCDF20 /* OnboardingStyleButton.swift */; };
 		CA3C4F2429CA5CFF00CCDF20 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2329CA5CFF00CCDF20 /* TextHelper.swift */; };
 		CA3C4F2629CA5E1100CCDF20 /* createAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2529CA5E1100CCDF20 /* createAccountView.swift */; };
-		CA3C4F2829CA5E3400CCDF20 /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2729CA5E3400CCDF20 /* CreateProfileView.swift */; };
 		CA3C4F2A29CA5E4300CCDF20 /* ImagePicker representable code snipet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2929CA5E4300CCDF20 /* ImagePicker representable code snipet.swift */; };
 		CA3C4F2C29CA5FB800CCDF20 /* AllSetView .swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2B29CA5FB800CCDF20 /* AllSetView .swift */; };
 		CA3C4F2E29CA983000CCDF20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2D29CA983000CCDF20 /* AppDelegate.swift */; };
@@ -23,6 +22,8 @@
 		CA3C4F3C29CBB84600CCDF20 /* RootContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3B29CBB84600CCDF20 /* RootContainer.swift */; };
 		CA3C4F4029CBF20700CCDF20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA3C4F3F29CBF20700CCDF20 /* GoogleService-Info.plist */; };
 		CA4413BC29D1F2820072A107 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4413BB29D1F2820072A107 /* RegistrationViewModel.swift */; };
+		CA4413C629D255F00072A107 /* TaskListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4413C529D255EF0072A107 /* TaskListVM.swift */; };
+		CA4413C829D259CA0072A107 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4413C729D259CA0072A107 /* Todo.swift */; };
 		CA4784A529C2488800FDF4F1 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */; };
 		CACA683D298B071E00611D89 /* TheJanitorial1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA683C298B071E00611D89 /* TheJanitorial1App.swift */; };
 		CACA6841298B072000611D89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CACA6840298B072000611D89 /* Assets.xcassets */; };
@@ -33,7 +34,7 @@
 		CACA6855298B08A100611D89 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CACA6854298B08A100611D89 /* FirebaseStorage */; };
 		CACA6857298B08EA00611D89 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA6856298B08EA00611D89 /* LoginScreen.swift */; };
 		CACA6859298B09A800611D89 /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA6858298B09A800611D89 /* TaskListScreen.swift */; };
-		CACA685B298B09C100611D89 /* AddTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA685A298B09C100611D89 /* AddTaskScreen.swift */; };
+		CACA685B298B09C100611D89 /* TaskFormScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA685A298B09C100611D89 /* TaskFormScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,6 @@
 		CA3C4F2029CA5AC200CCDF20 /* OnboardingStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStyleButton.swift; sourceTree = "<group>"; };
 		CA3C4F2329CA5CFF00CCDF20 /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 		CA3C4F2529CA5E1100CCDF20 /* createAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createAccountView.swift; sourceTree = "<group>"; };
-		CA3C4F2729CA5E3400CCDF20 /* CreateProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 		CA3C4F2929CA5E4300CCDF20 /* ImagePicker representable code snipet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImagePicker representable code snipet.swift"; sourceTree = "<group>"; };
 		CA3C4F2B29CA5FB800CCDF20 /* AllSetView .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AllSetView .swift"; sourceTree = "<group>"; };
 		CA3C4F2D29CA983000CCDF20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +52,8 @@
 		CA3C4F3B29CBB84600CCDF20 /* RootContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainer.swift; sourceTree = "<group>"; };
 		CA3C4F3F29CBF20700CCDF20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		CA4413BB29D1F2820072A107 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		CA4413C529D255EF0072A107 /* TaskListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListVM.swift; sourceTree = "<group>"; };
+		CA4413C729D259CA0072A107 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		CA4784A229C2471B00FDF4F1 /* TheJanitorial1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheJanitorial1.entitlements; sourceTree = "<group>"; };
 		CA4784A329C2481E00FDF4F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -61,7 +63,7 @@
 		CACA6843298B072000611D89 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CACA6856298B08EA00611D89 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		CACA6858298B09A800611D89 /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
-		CACA685A298B09C100611D89 /* AddTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskScreen.swift; sourceTree = "<group>"; };
+		CACA685A298B09C100611D89 /* TaskFormScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +109,6 @@
 				CACA6856298B08EA00611D89 /* LoginScreen.swift */,
 				CA3C4F3229CAA39B00CCDF20 /* RegistrationContainerView.swift */,
 				CA3C4F2529CA5E1100CCDF20 /* createAccountView.swift */,
-				CA3C4F2729CA5E3400CCDF20 /* CreateProfileView.swift */,
 				CA3C4F2B29CA5FB800CCDF20 /* AllSetView .swift */,
 			);
 			path = "Registration Screens";
@@ -175,7 +176,7 @@
 			children = (
 				CA3C4F3B29CBB84600CCDF20 /* RootContainer.swift */,
 				CACA6858298B09A800611D89 /* TaskListScreen.swift */,
-				CACA685A298B09C100611D89 /* AddTaskScreen.swift */,
+				CACA685A298B09C100611D89 /* TaskFormScreen.swift */,
 				CA3C4F2229CA5C7800CCDF20 /* Registration Screens */,
 			);
 			path = Screens;
@@ -187,6 +188,7 @@
 				CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */,
 				CA3C4F3929CB7CC500CCDF20 /* LoginViewModel.swift */,
 				CA4413BB29D1F2820072A107 /* RegistrationViewModel.swift */,
+				CA4413C529D255EF0072A107 /* TaskListVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				CA3C4F3729CB725C00CCDF20 /* User.swift */,
+				CA4413C729D259CA0072A107 /* Todo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,12 +286,12 @@
 				CA3C4F2C29CA5FB800CCDF20 /* AllSetView .swift in Sources */,
 				CACA6859298B09A800611D89 /* TaskListScreen.swift in Sources */,
 				CA3C4F2A29CA5E4300CCDF20 /* ImagePicker representable code snipet.swift in Sources */,
-				CACA685B298B09C100611D89 /* AddTaskScreen.swift in Sources */,
+				CACA685B298B09C100611D89 /* TaskFormScreen.swift in Sources */,
 				CA3C4F3C29CBB84600CCDF20 /* RootContainer.swift in Sources */,
 				CA4413BC29D1F2820072A107 /* RegistrationViewModel.swift in Sources */,
 				CA3C4F2E29CA983000CCDF20 /* AppDelegate.swift in Sources */,
-				CA3C4F2829CA5E3400CCDF20 /* CreateProfileView.swift in Sources */,
 				CA3C4F3629CB68DF00CCDF20 /* DatabaseService.swift in Sources */,
+				CA4413C629D255F00072A107 /* TaskListVM.swift in Sources */,
 				CA3C4F3829CB725D00CCDF20 /* User.swift in Sources */,
 				CA3C4F1E29CA58B500CCDF20 /* CreateProfileTextfieldStyle.swift in Sources */,
 				CA3C4F3329CAA39B00CCDF20 /* RegistrationContainerView.swift in Sources */,
@@ -298,6 +301,7 @@
 				CA3C4F2629CA5E1100CCDF20 /* createAccountView.swift in Sources */,
 				CACA683D298B071E00611D89 /* TheJanitorial1App.swift in Sources */,
 				CA3C4F2129CA5AC200CCDF20 /* OnboardingStyleButton.swift in Sources */,
+				CA4413C829D259CA0072A107 /* Todo.swift in Sources */,
 				CACA6857298B08EA00611D89 /* LoginScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

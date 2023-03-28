@@ -26,12 +26,12 @@ struct LoginScreen: View {
                     .opacity(0.05)
                     .ignoresSafeArea()
                 
-                VStack {
+                VStack(spacing: 20) {
                     TextField("Username/Email", text: $emailTxtF)
-                        .textFieldStyle(CreateProfileTextfieldStyle())
+                        .textFieldStyle(CreateProfileTextfieldStyle(buttonText: $emailTxtF))
                     
                     SecureField("Password", text: $passwordTxtF)
-                        .textFieldStyle(CreateProfileTextfieldStyle())
+                        .textFieldStyle(CreateProfileTextfieldStyle(buttonText: $passwordTxtF))
                     
                     Button {
 //                    TODO: verification process of signing in with the email and password
