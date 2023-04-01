@@ -20,7 +20,7 @@ struct RegistrationContainerView: View {
         ZStack {
             
             Color(.lightGray) // use school colors, maybe yellow or blue
-                .opacity(0.1)
+                .opacity(0.05)
                 .ignoresSafeArea()
             
             switch currentStep {

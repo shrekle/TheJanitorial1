@@ -14,7 +14,7 @@ class RegistrationViewModel: ObservableObject {
     @Published var isRegistrationSheetPresented = false
     
     static func signUp(email: String, password: String) async throws {
-        guard !email.isEmpty, !password.isEmpty else { print("🤬  no email or password"); return }
+        guard !email.isEmpty, !password.isEmpty else { print("🤬 no email or password"); return }
         try await AuthViewModel.createUserWithEmail(email: email, password: password)
     }
 }

@@ -45,6 +45,10 @@ struct createAccountView: View {
         }
     }
     
+//    TODO: Check that all fields have been filled before allowing to proceed
+//    TODO: Refactor the camara stuff, maybe have a standard picker view
+//    TODO: CreateButtonStyle is not working to clear the text, make it a View and not a Style
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
@@ -123,7 +127,12 @@ struct createAccountView: View {
                         Text("Middle School").tag(School.middleSchool)
                         Text("High School").tag(School.highSchool)
                     }
-                    .pickerStyle(.menu)
+                    .pickerStyle(.wheel)
+                    .padding(.horizontal)
+                    .background(RoundedRectangle(cornerRadius: 20).fill(.white))
+                    .frame(height: 100)
+                    .shadow(color: .black.opacity(0.1), radius: 5)
+//                    .opacity(0.2)
                 } //    VStack Pickers
                 .tint(.gray)
                                 
@@ -131,13 +140,20 @@ struct createAccountView: View {
                 Button {
                     isSaveButtonDisabaled = true
                     
-                    DatabaseService.setUserProfile(fullName: fullName, image: selectedImage) { isSuccess in
-                        if isSuccess {
-                            
-                            currentStep = .allSet
-                        } else {
-                            print("💩 loading failed")
-                            isSaveButtonDisabaled = false
+                    Task {
+                        do {
+                            try await RegistrationViewModel.signUp(email: email, password: password)
+                        } catch {
+                            print("🥵 error in the button to register user: \(error)")
+                        }
+                        DatabaseService.setUserProfile(fullName: fullName, image: selectedImage, isJanitor: isJanitor, schoolCode: school.rawValue) { isSuccess in
+                            if isSuccess {
+                                
+                                currentStep = .allSet
+                            } else {
+                                print("💩 loading failed")
+                                isSaveButtonDisabaled = false
+                            }
                         }
                     }
                     
@@ -146,7 +162,7 @@ struct createAccountView: View {
                 }
                 .buttonStyle(OnboardingButtonStyle())
                 .disabled(isSaveButtonDisabaled)
-                
+                .padding(.bottom)
                 //MARK: - SHEET
                 .sheet(isPresented: $isPickerShowing) {
                     ImagePicker(selectedImage: $selectedImage, isPickerShowing: $isPickerShowing, source: source )
