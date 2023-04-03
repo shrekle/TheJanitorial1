@@ -11,6 +11,7 @@ struct RootContainer: View {
     
     @EnvironmentObject var model: LoginViewModel
     
+//    @State var user = UserModel()
     
     var body: some View {
         ZStack {
@@ -21,7 +22,7 @@ struct RootContainer: View {
             VStack {
                 switch model.loginStatus {
                 case .isloggedIn:
-                    TaskListScreen()
+                    StaffTaskHomeScreen()
                 case .isloggedOut:
                     LoginScreen()
                 }

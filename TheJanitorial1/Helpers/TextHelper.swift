@@ -13,3 +13,5 @@ class TextHelper {
         return email.replacingOccurrences(of: " ", with: "")
     }
 }
+
+

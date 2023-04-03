@@ -18,6 +18,8 @@ struct LoginScreen: View {
     
 //    @State private var isRegisterSheetPresented = false
     
+//    TODO: inform user of error signing in, email or password dont match
+    
     var body: some View {
         
         NavigationStack {    

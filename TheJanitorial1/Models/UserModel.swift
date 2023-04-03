@@ -6,16 +6,16 @@
 //
 
 import Foundation
-import FirebaseAuth
 import FirebaseFirestoreSwift
 
-struct User: Codable {
+struct UserModel: Codable {
     @DocumentID var id: String?
     var fullName: String?
     var email: String?
     var image: String?
     var isJanitor: Bool?
     var schoolCode: Int?
+   
 }
 
 //struct AuthDataResultModel {

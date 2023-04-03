@@ -5,8 +5,6 @@
 //  Created by adrian garcia on 3/21/23.
 //
 
-import Foundation
-
 import SwiftUI
 import FirebaseCore
 import FirebaseAuth
@@ -32,4 +30,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
+
 

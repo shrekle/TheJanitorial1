@@ -7,16 +7,21 @@
 
 import SwiftUI
 
+//TODO: JANITOR MESSAGES, TO ASK THE SENDERS QUESTIONS OR SO THEY CAN ASK ME STUFF
+
+/// use the tutorial from sean allen swiftUI form, it has all that i need to make the request form for teachers to fill out and send me with a task
+
+
 struct TaskListScreen: View {
         
     @StateObject private var vm = TaskListVM()
     
     var body: some View {
-        /// use the tutorial from sean allen swiftUI form, it has all that i need to make the request form for teachers to fill out and send me with a task
+     
         VStack {
             ///Heading
             HStack {
-                Text("Tasks")
+                Text("TO DOO-DOO'S")
                     .font(.largeTitle)
                 
                 Spacer()
@@ -58,10 +63,10 @@ struct TaskListScreen: View {
                 }
             }
             .sheet(isPresented: $vm.isPresented) {
-                TaskFormScreen()
+            
             }
         }
-        
+
         .padding()
     }
 }

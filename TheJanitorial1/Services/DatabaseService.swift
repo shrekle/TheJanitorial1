@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseStorage
+import FirebaseAuth
 
 class DatabaseService {
     
@@ -31,16 +32,21 @@ class DatabaseService {
             guard let dataImage else {print("🤬 dataImage is homo"); return }
             
             let path = "images/\(UUID().uuidString).jpeg"
-            let imageRef = storageRef.child(path)
+            let fileRef = storageRef.child(path)
             
-            imageRef.putData(dataImage) { metaData, error in
+            fileRef.putData(dataImage, metadata: nil) { metaData, error in
                 if error == nil && metaData != nil {
-                    doc.setData(["image": path], merge: true) { error in
-                        if error == nil {
-                            completion(true)
-                        } else {
-                            print("🤬 error putting data Image: \(String(describing: error))")
-                            completion(false)
+                    
+                    fileRef.downloadURL { url, error in
+                        guard error == nil, let url else { print("🦐 downloadURL ERROR: \(String(describing: error))"); return }
+                        
+                        doc.setData(["image": url.absoluteString], merge: true) { error in
+                            if error == nil {
+                                completion(true)
+                            } else {
+                                print("🤬 error gettin url Image: \(String(describing: error))")
+                                completion(false)
+                            }
                         }
                     }
                 }
@@ -48,5 +54,23 @@ class DatabaseService {
         } else {
             completion(true)
         }
+    }
+    
+    static func gitCurrentUserModel() async throws -> UserModel {
+        
+        guard AuthViewModel.isUserLoggedIn() else { print("💩 user aint logged in");  return UserModel() }
+        
+        let db = Firestore.firestore()
+        let currentUserID = AuthViewModel.getLoggedInUserId()
+        
+        var currentUser = UserModel()
+        
+        let userQueer = db.collection("users").document(currentUserID)
+        
+        let doc = try await userQueer.getDocument()
+        
+        currentUser = try doc.data(as: UserModel.self)
+        
+        return currentUser
     }
 }

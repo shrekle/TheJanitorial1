@@ -17,6 +17,7 @@ enum School: Int {
     case middleSchool = 2
     case highSchool = 1
 }
+
 struct createAccountView: View {
     
     @Binding var currentStep: registrationStep
@@ -46,7 +47,7 @@ struct createAccountView: View {
     }
     
 //    TODO: Check that all fields have been filled before allowing to proceed
-//    TODO: Refactor the camara stuff, maybe have a standard picker view
+//    TODO: Refactor the camara stuff, maybe have a standard ImagePicker view to choose a pic
 //    TODO: CreateButtonStyle is not working to clear the text, make it a View and not a Style
     
     var body: some View {
@@ -128,11 +129,11 @@ struct createAccountView: View {
                         Text("High School").tag(School.highSchool)
                     }
                     .pickerStyle(.wheel)
-                    .padding(.horizontal)
                     .background(RoundedRectangle(cornerRadius: 20).fill(.white))
                     .frame(height: 100)
                     .shadow(color: .black.opacity(0.1), radius: 5)
-//                    .opacity(0.2)
+                    .padding(.horizontal)
+
                 } //    VStack Pickers
                 .tint(.gray)
                                 

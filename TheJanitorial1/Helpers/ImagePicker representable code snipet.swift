@@ -62,3 +62,5 @@ class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationContro
         parent.isPickerShowing = false
     }
 }
+
+
