@@ -5,8 +5,14 @@
 //  Created by adrian garcia on 3/27/23.
 //
 
-import Foundation
+import SwiftUI
+import FirebaseFirestoreSwift
 
 struct Todo: Codable, Identifiable {
-    var id = UUID()
+    @DocumentID var id: String?
+    var fullName: String?
+    var todo: String?
+    var eta: String?
+    var custom: String?
+    var imageUrl: String?
 }

@@ -16,30 +16,63 @@ struct TaskContainer: View {
         
     @State var taskStatus = TaskSendingStatus.fillOut
     
+    @Binding var isPresented: Bool
+    
     var body: some View {
         
         VStack {
-            
-            Image(systemName: "chevron.compact.down")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 50)
-                .foregroundColor(.blue)
-                .padding(.top)
-            
+            HStack {
+                
+                Text("Done") // this is used only for correct spacing
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(.clear)
+                    .padding(.leading)
+                    .padding(.top)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.compact.down")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50)
+                    .foregroundColor(.blue)
+                    .padding(.top)
+                
+                Spacer()
+                
+                if taskStatus == .isSent {
+                    Button {
+                        isPresented = false
+                    } label: {
+                        Text("Done")
+                            .font(.title2)
+                            .bold()
+                            .padding(.trailing)
+                            .padding(.top)
+                    }
+                } else {
+                    Text("Done")
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(.clear)
+                        .padding(.trailing)
+                        .padding(.top)
+                }
+            }
+           
             switch taskStatus {
             case .fillOut:
                 TaskFormScreen(taskStatus: $taskStatus)
             case .isSent:
-                TaskSentScreen()
+                TaskSentScreen(isPresented: $isPresented)
             }
         }//main
-       
     }
 }
 
 struct TaskContainer_Previews: PreviewProvider {
     static var previews: some View {
-        TaskContainer()
+        TaskContainer(isPresented: .constant(false))
     }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TaskSentScreen: View {
     
+    @Binding var isPresented: Bool
+    
     var body: some View {
         VStack {
             Spacer()
@@ -28,6 +30,6 @@ struct TaskSentScreen: View {
 
 struct TaskSentScreen_Previews: PreviewProvider {
     static var previews: some View {
-        TaskSentScreen()
+        TaskSentScreen(isPresented: .constant(false))
     }
 }

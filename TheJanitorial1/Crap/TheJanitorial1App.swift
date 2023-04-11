@@ -18,6 +18,7 @@ struct TheJanitorial1App: App {
         WindowGroup {
             RootContainer()
                 .environmentObject(LoginViewModel())
+                .environmentObject(SendTaskViewModel())
         }
     }
 }

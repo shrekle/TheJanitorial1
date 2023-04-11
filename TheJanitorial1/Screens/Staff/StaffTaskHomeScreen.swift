@@ -15,7 +15,6 @@ struct StaffTaskHomeScreen: View {
     @StateObject var VMsendTask = SendTaskViewModel()
     
     @State var isPresented = false
-    @State var taskSent = false
     
     var body: some View {
         
@@ -57,7 +56,7 @@ struct StaffTaskHomeScreen: View {
         }//main
         .padding(.horizontal)
         .sheet(isPresented: $isPresented) {
-            TaskContainer()
+            TaskContainer(isPresented: $isPresented)
                 .presentationDragIndicator(.visible)
         }
     }

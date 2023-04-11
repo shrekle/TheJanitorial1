@@ -73,4 +73,16 @@ class DatabaseService {
         
         return currentUser
     }
+    
+    static func sendTask(todo: Todo, user: String) async throws {
+       let db = Firestore.firestore()
+       
+       let doc = db.collection(C.tasks).document()
+        
+      try doc.setData(from: todo) { error in // i dont think i need this completion
+          if let error {
+              print("😵‍💫 error sendTask(): \(error)")
+          }
+       }
+    }
 }

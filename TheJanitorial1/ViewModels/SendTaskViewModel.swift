@@ -11,6 +11,7 @@ import Foundation
 final class SendTaskViewModel: ObservableObject {
     
     @Published var user = UserModel()
+    @Published var todo = Todo()
     
     init() {
         Task {
@@ -19,8 +20,12 @@ final class SendTaskViewModel: ObservableObject {
             }
         }
     }
-    
+    //
     func gitUser() async throws {
         return self.user = try await DatabaseService.gitCurrentUserModel()
+    }
+    
+    func sendTask(todo: Todo, user: String) async throws {
+       try await DatabaseService.sendTask(todo: todo, user: user)
     }
 }

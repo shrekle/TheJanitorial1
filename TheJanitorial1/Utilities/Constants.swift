@@ -1,0 +1,12 @@
+//
+//  Constants.swift
+//  TheJanitorial1
+//
+//  Created by adrian garcia on 4/11/23.
+//
+
+import Foundation
+
+struct C {
+    static var tasks = "tasks"
+}

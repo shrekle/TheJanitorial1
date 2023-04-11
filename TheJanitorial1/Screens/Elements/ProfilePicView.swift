@@ -10,6 +10,9 @@ import SwiftUI
 struct ProfilePicView: View {
     
     var user: UserModel
+    var cacheImage: Image? {
+        CacheService.getImage(forKey: user.image ?? "")
+    }
     
     var body: some View {
         
@@ -18,38 +21,48 @@ struct ProfilePicView: View {
                 ZStack {
                     Circle()
                         .foregroundColor(.white)
-                    Text(user.fullName?.prefix(1) ?? "image is nil")
+                    Text(user.fullName?.prefix(1) ?? "")
                         .bold()
                 }
             } else {
-                
-                let imageURL = URL(string: user.image ?? "")
-                
-                AsyncImage(url: imageURL) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .clipShape(Circle())
-                            .scaledToFill()
-                    case .failure:
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.white)
-                            Text(user.fullName?.prefix(1) ?? "")
-                                .bold()
+                if let cacheImage {
+                    cacheImage
+                        .resizable()
+                        .clipShape(Circle())
+                        .scaledToFill()
+                } else {
+                    let imageURL = URL(string: user.image!)
+                    
+                    AsyncImage(url: imageURL) { phase in
+                        
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .clipShape(Circle())
+                                .scaledToFill()
+                                .onAppear {
+                                    CacheService.setImage(image: image, forKey: user.image!)
+                                }
+                        case .failure:
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(.white)
+                                Text(user.fullName?.prefix(1) ?? "")
+                                    .bold()
+                            }
+                        @unknown default:
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(.white)
+                                Text(user.fullName?.prefix(1) ?? "")
+                                    .bold()
+                            }
                         }
-                    @unknown default:
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.white)
-                            Text(user.fullName?.prefix(1) ?? "")
-                                .bold()
-                        }
-                    }
-                } // AsyncImage
+                    } // AsyncImage
+                }
             }
           
             Circle()
@@ -57,7 +70,6 @@ struct ProfilePicView: View {
             
         } // ZStack
         .frame(width: 44, height: 44)
-        
     }
 }
 
