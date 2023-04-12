@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-//TODO: have the bottom sheet diplay a big green circle check mark to let the user know that the  task was sent successfully
-
 struct StaffTaskHomeScreen: View {
     
     @StateObject var VMsendTask = SendTaskViewModel()
@@ -21,11 +18,18 @@ struct StaffTaskHomeScreen: View {
         VStack {
             ///Header
             HStack {
+                
                 ProfilePicView(user: VMsendTask.user)
                 
-                Text(VMsendTask.user.fullName ?? "name is nil")
-                    .font(.title)
-                    .padding(.leading)
+                if VMsendTask.user.fullName != nil {
+                    Text(VMsendTask.user.fullName ?? "")
+                        .font(.title)
+                        .padding(.leading)
+                } else {
+                    ProgressView()
+                        .padding(.leading)
+                }
+             
                 
                 Spacer()
                 

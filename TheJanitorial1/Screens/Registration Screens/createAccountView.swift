@@ -20,6 +20,9 @@ enum School: Int {
 
 struct createAccountView: View {
     
+    
+    @EnvironmentObject var sendTaskVM: SendTaskViewModel
+    
     @Binding var currentStep: registrationStep
     
     // my Textfields
@@ -149,7 +152,13 @@ struct createAccountView: View {
                         }
                         DatabaseService.setUserProfile(fullName: fullName, image: selectedImage, isJanitor: isJanitor, schoolCode: school.rawValue) { isSuccess in
                             if isSuccess {
-                                
+                                Task {
+                                    do {
+                                        try await sendTaskVM.user = DatabaseService.gitCurrentUserModel()
+                                    } catch {
+                                        print("😵 createAccountView save button: \(error)")
+                                    }
+                                }
                                 currentStep = .allSet
                             } else {
                                 print("💩 loading failed")

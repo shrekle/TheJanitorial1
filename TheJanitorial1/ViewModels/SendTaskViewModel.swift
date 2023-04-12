@@ -22,10 +22,10 @@ final class SendTaskViewModel: ObservableObject {
     }
     //
     func gitUser() async throws {
-        return self.user = try await DatabaseService.gitCurrentUserModel()
+         user = try await DatabaseService.gitCurrentUserModel()
     }
     
-    func sendTask(todo: Todo, user: String) async throws {
-       try await DatabaseService.sendTask(todo: todo, user: user)
+    func sendTask(todo: Todo) async throws {
+        try await DatabaseService.sendTask(todo: todo, user: user.fullName!)
     }
 }

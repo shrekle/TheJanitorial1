@@ -16,7 +16,7 @@ class DatabaseService {
     static func setUserProfile(fullName: String, image: UIImage?, isJanitor: Bool, schoolCode: Int, completion: @escaping (Bool)-> Void) {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }
         
-        let db = Firestore.firestore() // this needs to be here since its a static func, cant be a class property
+        let db = Firestore.firestore() 
         let storageRef = Storage.storage().reference()
         
         let userId = AuthViewModel.getLoggedInUserId()
@@ -65,7 +65,7 @@ class DatabaseService {
         
         var currentUser = UserModel()
         
-        let userQueer = db.collection("users").document(currentUserID)
+        let userQueer = db.collection(C.users).document(currentUserID)
         
         let doc = try await userQueer.getDocument()
         
@@ -75,8 +75,9 @@ class DatabaseService {
     }
     
     static func sendTask(todo: Todo, user: String) async throws {
+        
        let db = Firestore.firestore()
-       
+               
        let doc = db.collection(C.tasks).document()
         
       try doc.setData(from: todo) { error in // i dont think i need this completion
@@ -84,5 +85,6 @@ class DatabaseService {
               print("😵‍💫 error sendTask(): \(error)")
           }
        }
+        try await doc.setData(["fullName": user], merge: true)
     }
 }

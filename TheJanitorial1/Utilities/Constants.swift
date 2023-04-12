@@ -9,4 +9,6 @@ import Foundation
 
 struct C {
     static var tasks = "tasks"
+    static var users = "users"
+    static var images = "images"
 }

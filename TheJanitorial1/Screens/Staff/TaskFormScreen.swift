@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-enum Eta {
-    case now
-    case asap
-    case byTommorow
-    case ByEndOfWeek
-    case whenYouGetChance
-    case custom
+enum Eta: String, CaseIterable {
+    case now = "now"
+    case asap = "ASAP(urgent!!!)"
+    case byTommorow = "By Tommorow"
+    case ByEndOfWeek = "By the end if the week"
+    case whenYouGetChance = "When you get a chance"
+    case custom = "Custom"
 }
 /// use the tutorial from sean allen swiftUI form, it has all that i need to make the request form for teachers to fill out and send me with a task
 
@@ -61,12 +61,15 @@ struct TaskFormScreen: View {
                         .padding(.top, 30)
                     ///Picker
                     Picker("", selection: $eta) {
-                        Text("When you get a chance").tag(Eta.whenYouGetChance)
-                        Text("now").tag(Eta.now)
-                        Text("ASAP(urgent!!!)").tag(Eta.asap)
-                        Text("By Tommorow").tag(Eta.byTommorow)
-                        Text("By the end if the week").tag(Eta.ByEndOfWeek)
-                        Text("Custom").tag(Eta.custom)
+                        ForEach(Eta.allCases, id: \.self) { eta in
+                            Text(eta.rawValue)
+                        }
+//                        Text("When you get a chance").tag(Eta.whenYouGetChance)
+//                        Text("now").tag(Eta.now)
+//                        Text("ASAP(urgent!!!)").tag(Eta.asap)
+//                        Text("By Tommorow").tag(Eta.byTommorow)
+//                        Text("By the end if the week").tag(Eta.ByEndOfWeek)
+//                        Text("Custom").tag(Eta.custom)
                     }
                     .pickerStyle(.wheel)
                     .background(RoundedRectangle(cornerRadius: 50).fill(.white))
@@ -131,16 +134,14 @@ struct TaskFormScreen: View {
             }//Scrolly
             ///Button
             Button {
-               
                 Task {
                     do {
-                        let currrentUser = try await DatabaseService.gitCurrentUserModel()
+                        let task = Todo(fullName: nil, todo: textEditor, eta: eta.rawValue , custom: customTextField)
                         
-                        let task = Todo(fullName: currrentUser.fullName, todo: textEditor, eta: , custom: customTextField, imageUrl: <#T##String?#>)
-                        
-                        sendTaskVM.sendTask(todo: <#T##Todo#>, user: <#T##String#>)
+                        try await sendTaskVM.sendTask(todo: task)
                     } catch {
-                        
+                        print("🤢 error sending task, taskFormScreen button: \(error)")
+                        return
                     }
                 }
                 taskStatus = .isSent
