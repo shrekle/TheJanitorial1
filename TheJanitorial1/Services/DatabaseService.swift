@@ -11,18 +11,18 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import FirebaseAuth
 
-class DatabaseService {
+final class DatabaseService {
     
     static func setUserProfile(fullName: String, image: UIImage?, isJanitor: Bool, schoolCode: Int, completion: @escaping (Bool)-> Void) {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }
         
-        let db = Firestore.firestore() 
+        let db = Firestore.firestore()
         let storageRef = Storage.storage().reference()
         
         let userId = AuthViewModel.getLoggedInUserId()
         let userEmail = AuthViewModel.getUserEmail()
         
-        let doc = db.collection("users").document(userId)
+        let doc = db.collection(C.users).document(userId)
         
         doc.setData(["fullName": fullName, "email": userEmail, "isJanitor": isJanitor, "schoolCode": schoolCode])
         
@@ -31,7 +31,7 @@ class DatabaseService {
             
             guard let dataImage else {print("🤬 dataImage is homo"); return }
             
-            let path = "images/\(UUID().uuidString).jpeg"
+            let path = "\(C.images)/\(UUID().uuidString).jpeg"
             let fileRef = storageRef.child(path)
             
             fileRef.putData(dataImage, metadata: nil) { metaData, error in
@@ -58,7 +58,7 @@ class DatabaseService {
     
     static func gitCurrentUserModel() async throws -> UserModel {
         
-        guard AuthViewModel.isUserLoggedIn() else { print("💩 user aint logged in");  return UserModel() }
+        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return UserModel() }
         
         let db = Firestore.firestore()
         let currentUserID = AuthViewModel.getLoggedInUserId()
@@ -76,15 +76,33 @@ class DatabaseService {
     
     static func sendTask(todo: Todo, user: String) async throws {
         
-       let db = Firestore.firestore()
-               
-       let doc = db.collection(C.tasks).document()
+        let db = Firestore.firestore()
         
-      try doc.setData(from: todo) { error in // i dont think i need this completion
-          if let error {
-              print("😵‍💫 error sendTask(): \(error)")
-          }
-       }
+        let doc = db.collection(C.tasks).document()
+        
+        try doc.setData(from: todo) { error in // i dont think i need this completion
+            if let error {
+                print("😵‍💫 error sendTask(): \(error)")
+            }
+        }
         try await doc.setData(["fullName": user], merge: true)
     }
+    
+    static func gitTasks() async throws -> [Todo] {
+        
+        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return [Todo]() }
+        
+        let db = Firestore.firestore()
+        
+        var todos = [Todo]()
+        
+        let snappy = try await db.collection(C.tasks).getDocuments()
+        
+        for doc in snappy.documents {
+            let todo = try doc.data(as: Todo.self)
+            todos.append(todo)
+        }
+        return todos
+    }
 }
+  

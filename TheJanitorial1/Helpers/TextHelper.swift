@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TextHelper {
+struct TextHelper { // i switched this from a class to a struct, seems to work eigther way
     
     static func sanitizeEmail(_ email: String)-> String {
         return email.replacingOccurrences(of: " ", with: "")

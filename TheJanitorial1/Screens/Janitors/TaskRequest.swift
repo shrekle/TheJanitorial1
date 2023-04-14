@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+///show the actual task that was clicked
 struct TaskRequest: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

@@ -22,6 +22,7 @@ struct createAccountView: View {
     
     
     @EnvironmentObject var sendTaskVM: SendTaskViewModel
+    @EnvironmentObject var loginVM: LoginViewModel
     
     @Binding var currentStep: registrationStep
     
@@ -154,7 +155,9 @@ struct createAccountView: View {
                             if isSuccess {
                                 Task {
                                     do {
-                                        try await sendTaskVM.user = DatabaseService.gitCurrentUserModel()
+                                        let currentUser = try await DatabaseService.gitCurrentUserModel()
+                                         sendTaskVM.currentUser = currentUser
+                                        loginVM.currentUser = currentUser
                                     } catch {
                                         print("😵 createAccountView save button: \(error)")
                                     }
@@ -165,7 +168,7 @@ struct createAccountView: View {
                                 isSaveButtonDisabaled = false
                             }
                         }
-                    }
+                    }//Task
                     
                 } label: {
                     Text(isSaveButtonDisabaled ? "Loading... ": "Save")

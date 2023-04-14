@@ -11,20 +11,23 @@ import SwiftUI
 
 /// use the tutorial from sean allen swiftUI form, it has all that i need to make the request form for teachers to fill out and send me with a task
 
-
+//
 struct TaskListScreen: View {
         
-    @StateObject private var vm = TaskListVM()
+    @StateObject private var taskListVM = TaskListViewModel()
     
     var body: some View {
      
         VStack {
             ///Heading
             HStack {
+                
                 Text("TO DOO-DOO'S")
                     .font(.largeTitle)
+                    .bold()
                 
                 Spacer()
+                
                 ///Gear
                 //TODO: change profile info, change email or password
                 Button {
@@ -36,37 +39,15 @@ struct TaskListScreen: View {
                 }
             }
             .padding(.top, 20)
+            
             ///Task List
-            if !vm.tasks.isEmpty {
-                
-            } else {
-                Spacer()
-                Text("Click on the plus icon on your bottom right to add a task 😀")
-                    .font(.body)
-                    .bold()
-                    .foregroundColor(.gray)
-                    .padding(.horizontal, 40)
-                Spacer()
+            List(taskListVM.tasks) { thang in
+                Text(thang.fullName!)
             }
-            ///Plus Icon Button
-            HStack {
-                
-                Spacer()
-                
-                Button {
-                    vm.isPresented = true
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100)
-                }
-            }
-            .sheet(isPresented: $vm.isPresented) {
+            .sheet(isPresented: $taskListVM.isPresented) {
             
             }
         }
-
         .padding()
     }
 }

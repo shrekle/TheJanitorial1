@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StaffTaskHomeScreen: View {
+struct StaffHomeScreen: View {
     
     @StateObject var VMsendTask = SendTaskViewModel()
     
@@ -19,10 +19,10 @@ struct StaffTaskHomeScreen: View {
             ///Header
             HStack {
                 
-                ProfilePicView(user: VMsendTask.user)
+                ProfilePicView(user: VMsendTask.currentUser)
                 
-                if VMsendTask.user.fullName != nil {
-                    Text(VMsendTask.user.fullName ?? "")
+                if VMsendTask.currentUser.fullName != nil {
+                    Text(VMsendTask.currentUser.fullName ?? "")
                         .font(.title)
                         .padding(.leading)
                 } else {
@@ -30,7 +30,6 @@ struct StaffTaskHomeScreen: View {
                         .padding(.leading)
                 }
              
-                
                 Spacer()
                 
                 ///Settings Gear
@@ -68,6 +67,6 @@ struct StaffTaskHomeScreen: View {
 
 struct SendTaskScreen_Previews: PreviewProvider {
     static var previews: some View {
-        StaffTaskHomeScreen()
+        StaffHomeScreen()
     }
 }

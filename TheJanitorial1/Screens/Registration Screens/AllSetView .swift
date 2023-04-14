@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AllSetView: View {
     
-    @EnvironmentObject var model: LoginViewModel
+    @EnvironmentObject var loginVM: LoginViewModel
    
     var body: some View {
         
@@ -30,8 +30,8 @@ struct AllSetView: View {
             Spacer()
             
             Button {
-                model.loginStatus = .isloggedIn
-                model.isRegistrationSheetPresented = false
+                loginVM.loginStatus = .isloggedIn
+                loginVM.isRegistrationSheetPresented = false
             } label: {
                 Text("Continue over to cracking the whip on the janitor!!!")
             }

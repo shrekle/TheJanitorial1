@@ -14,16 +14,24 @@ enum currentStatus: Int {
 }
 
 @MainActor
-class LoginViewModel: ObservableObject {
-    
+final class LoginViewModel: ObservableObject {
+    @Published var currentUser = UserModel()
     @Published var loginStatus: currentStatus = .isloggedOut
     @Published var isRegistrationSheetPresented = false
     
     
     init() {
         isLoggedIn()
+        Task {
+            do {
+                try await gitCurrentUser() // i changed the Taskk Do Catch tohere
+            } catch {
+                print("👤 loginViewModel init(): \(error)")
+            }
+        }
+           
     }
-    
+    //
     func isLoggedIn() {
         
         switch AuthViewModel.isUserLoggedIn() {
@@ -39,4 +47,14 @@ class LoginViewModel: ObservableObject {
         try await AuthViewModel.signIn(email: email, password: password)
     }
     
+    func gitCurrentUser() async throws {
+//        Task {
+//            do { // MIGHT NEED TO SIMPLPLIFY THIS FUNC AND TAKE AWAY THE Guard or return a print or something
+                let currentUser = try await DatabaseService.gitCurrentUserModel()
+                self.currentUser = currentUser
+//            } catch {
+//                print("🫀 loginVM gitCurrentUser: \(error)")
+//            }
+//        }
+    }
 }

@@ -1,5 +1,5 @@
 //
-//  RootContainer.swift
+//  MainRootContainer.swift
 //  TheJanitorial1
 //
 //  Created by adrian garcia on 3/22/23.
@@ -7,22 +7,21 @@
 
 import SwiftUI
 
-struct RootContainer: View {
+struct MainRootContainer: View {
     
-    @EnvironmentObject var model: LoginViewModel
-    
-//    @State var user = UserModel()
-    
+    @EnvironmentObject var loginVM: LoginViewModel
+  
     var body: some View {
         ZStack {
             
             Color(.lightGray)
                 .opacity(0.05)
-
+                .ignoresSafeArea()
+            
             VStack {
-                switch model.loginStatus {
+                switch loginVM.loginStatus {
                 case .isloggedIn:
-                    StaffTaskHomeScreen()
+                    LoggedInRootContainer()
                 case .isloggedOut:
                     LoginScreen()
                 }
@@ -31,9 +30,9 @@ struct RootContainer: View {
     }
 }
 
-struct RootContainer_Previews: PreviewProvider {
+struct MainRootContainer_Previews: PreviewProvider {
     static var previews: some View {
-        RootContainer()
+        MainRootContainer()
             .environmentObject(LoginViewModel())
     }
 }

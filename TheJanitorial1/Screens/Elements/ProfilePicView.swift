@@ -13,7 +13,6 @@ struct ProfilePicView: View {
     var cacheImage: Image? {
         CacheService.getImage(forKey: user.image ?? "")
     }
-    
     var body: some View {
         
         ZStack {
@@ -25,12 +24,14 @@ struct ProfilePicView: View {
                         .bold()
                 }
             } else {
+                
                 if let cacheImage {
                     cacheImage
                         .resizable()
                         .clipShape(Circle())
                         .scaledToFill()
                 } else {
+                    
                     let imageURL = URL(string: user.image!)
                     
                     AsyncImage(url: imageURL) { phase in
@@ -64,13 +65,13 @@ struct ProfilePicView: View {
                     } // AsyncImage
                 }
             }
-          
             Circle()
                 .stroke(.blue, lineWidth: 2)
             
         } // ZStack
         .frame(width: 44, height: 44)
     }
+    
 }
 
 struct ProfilePicView_Previews: PreviewProvider {
@@ -78,3 +79,4 @@ struct ProfilePicView_Previews: PreviewProvider {
         ProfilePicView(user: UserModel())
     }
 }
+

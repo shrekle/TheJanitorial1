@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 final class SendTaskViewModel: ObservableObject {
     
-    @Published var user = UserModel()
+    @Published var currentUser = UserModel()
     @Published var todo = Todo()
     
     init() {
@@ -22,10 +22,10 @@ final class SendTaskViewModel: ObservableObject {
     }
     //
     func gitUser() async throws {
-         user = try await DatabaseService.gitCurrentUserModel()
+         currentUser = try await DatabaseService.gitCurrentUserModel()
     }
     
     func sendTask(todo: Todo) async throws {
-        try await DatabaseService.sendTask(todo: todo, user: user.fullName!)
+        try await DatabaseService.sendTask(todo: todo, user: currentUser.fullName!)
     }
 }

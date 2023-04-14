@@ -11,7 +11,7 @@ import SwiftUI
 
 struct LoginScreen: View {
     
-    @EnvironmentObject var model: LoginViewModel
+    @EnvironmentObject var loginVm: LoginViewModel
     
     @State private var emailTxtF = ""
     @State private var passwordTxtF = ""
@@ -19,6 +19,7 @@ struct LoginScreen: View {
 //    @State private var isRegisterSheetPresented = false
     
 //    TODO: inform user of error signing in, email or password dont match
+//    TODO: verification process of signing in with the email and password
     
     var body: some View {
         
@@ -35,29 +36,30 @@ struct LoginScreen: View {
                     SecureField("Password", text: $passwordTxtF)
                         .textFieldStyle(CreateProfileTextfieldStyle(buttonText: $passwordTxtF))
                     
+                    ///Login Button
                     Button {
-//                    TODO: verification process of signing in with the email and password
                         Task {
                             do {
-                                try await model.signIn(email: emailTxtF, password: passwordTxtF)
+                                try await loginVm.signIn(email: emailTxtF, password: passwordTxtF)
+                               try await loginVm.gitCurrentUser()
                                 // not too sure if this will execute even if sign in fails, with this new async await 
-                                model.loginStatus = .isloggedIn
+                                loginVm.loginStatus = .isloggedIn
                             } catch {
                                 print("💩 error signing up: \(error)")
                             }
                         }
-                       
                     } label: {
                         Text("Login")
                     }
                     .buttonStyle(OnboardingButtonStyle())
                     .padding(.bottom)
                     
+                    ///Register Button
                     Button("register") {
-                        model.isRegistrationSheetPresented = true
+                        loginVm.isRegistrationSheetPresented = true
                     }
                 }
-                .sheet(isPresented: $model.isRegistrationSheetPresented) {
+                .sheet(isPresented: $loginVm.isRegistrationSheetPresented) {
                     RegistrationContainerView()
                         .presentationDragIndicator(.visible)
                 }
@@ -70,6 +72,6 @@ struct LoginScreen: View {
 struct LoginScreen_Previews: PreviewProvider {
     static var previews: some View {
         LoginScreen()
-            .environmentObject(LoginViewModel())
+//            .environmentObject(LoginViewModel())
     }
 }

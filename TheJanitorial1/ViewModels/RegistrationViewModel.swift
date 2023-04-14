@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-class RegistrationViewModel: ObservableObject {
+final class RegistrationViewModel: ObservableObject {
     
     @Published var loginStatus: currentStatus = .isloggedOut
     @Published var isRegistrationSheetPresented = false
