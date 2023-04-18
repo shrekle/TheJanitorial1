@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 @MainActor
 final class TaskListViewModel: ObservableObject {
     
@@ -25,6 +24,8 @@ final class TaskListViewModel: ObservableObject {
     }
     
     func gitTasks() async throws {
-        tasks =  try await DatabaseService.gitTasks()
+        DatabaseService.gitTasks { todos in
+            self.tasks = todos
+        }
     }
 }

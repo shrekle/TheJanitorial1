@@ -42,7 +42,8 @@ struct TaskListScreen: View {
             
             ///Task List
             List(taskListVM.tasks) { thang in
-                Text(thang.fullName!)
+//            TODO: need a time stamp to order the list and see when the task was created to judge when i have to do it
+                Text(thang.todo!)
             }
             .sheet(isPresented: $taskListVM.isPresented) {
             

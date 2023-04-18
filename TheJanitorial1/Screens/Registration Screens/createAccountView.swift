@@ -167,11 +167,11 @@ struct createAccountView: View {
                                 print("💩 loading failed")
                                 isSaveButtonDisabaled = false
                             }
-                        }
+                        }// SetProfile Closure
                     }//Task
                     
                 } label: {
-                    Text(isSaveButtonDisabaled ? "Loading... ": "Save")
+                    Text(isSaveButtonDisabaled ? "Loading... ": "Create Account")
                 }
                 .buttonStyle(OnboardingButtonStyle())
                 .disabled(isSaveButtonDisabaled)

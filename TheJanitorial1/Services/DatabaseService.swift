@@ -88,21 +88,31 @@ final class DatabaseService {
         try await doc.setData(["fullName": user], merge: true)
     }
     
-    static func gitTasks() async throws -> [Todo] {
+    static func gitTasks(completion: @escaping (_ todos: [Todo])-> Void) {
         
-        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return [Todo]() }
+        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return }
         
         let db = Firestore.firestore()
         
-        var todos = [Todo]()
+        let collection = db.collection(C.tasks)//.order(by: "timestamp")
         
-        let snappy = try await db.collection(C.tasks).getDocuments()
-        
-        for doc in snappy.documents {
-            let todo = try doc.data(as: Todo.self)
-            todos.append(todo)
-        }
-        return todos
+        let listener = collection.addSnapshotListener { snapshot, error in
+            
+            guard let snapshot = snapshot else { print("Error fetching snapshot: \(String(describing: error))"); return }
+
+            var todos = [Todo]()
+
+             for document in snapshot.documents {
+                 do {
+                     let todo = try document.data(as: Todo.self)
+                     todos.append(todo)
+                     completion(todos)
+                     print("👛 DATABASE FOR IN LOOP listener: \(todo)")
+                 } catch {
+                     print("Error decoding Todo object: \(error)")
+                 }
+             }
+         }
     }
 }
   
