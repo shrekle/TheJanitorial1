@@ -37,7 +37,7 @@ extension AuthViewModel {
     //    @discardableResult
     static func createUserWithEmail(email: String, password: String) async throws {
         try await Auth.auth().createUser(withEmail: email, password: password)
-        try await Auth.auth().signIn(withEmail: email, password: password)
+//        try await Auth.auth().signIn(withEmail: email, password: password)// dont think i need this here
     }
     
     //    @discardableResult

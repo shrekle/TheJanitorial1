@@ -16,6 +16,8 @@ final class DatabaseService {
     static func setUserProfile(fullName: String, image: UIImage?, isJanitor: Bool, schoolCode: Int, completion: @escaping (Bool)-> Void) {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }
         
+        print("😍 database setUserProfile testing, passed the isUserLogged in guard check : \(fullName)")
+        
         let db = Firestore.firestore()
         let storageRef = Storage.storage().reference()
         
