@@ -24,14 +24,14 @@ final class LoginViewModel: ObservableObject {
         isLoggedIn()
         Task {
             do {
-                try await gitCurrentUser() // i changed the Taskk Do Catch tohere
+                try await gitCurrentUser() // i changed the Taskk Do Catch to here
             } catch {
                 print("👤 loginViewModel init(): \(error)")
             }
         }
            
     }
-    //
+
     func isLoggedIn() {
         
         switch AuthViewModel.isUserLoggedIn() {
@@ -48,13 +48,12 @@ final class LoginViewModel: ObservableObject {
     }
     
     func gitCurrentUser() async throws {
-//        Task {
-//            do { // MIGHT NEED TO SIMPLPLIFY THIS FUNC AND TAKE AWAY THE Guard or return a print or something
-                let currentUser = try await DatabaseService.gitCurrentUserModel()
-                self.currentUser = currentUser
-//            } catch {
-//                print("🫀 loginVM gitCurrentUser: \(error)")
-//            }
-//        }
+        Task {
+            do {
+                self.currentUser = try await DatabaseService.gitCurrentUserModel()
+            } catch {
+                print("🤢 loginVM gitCurrentUser() catch : \(error)")
+            }
+        }
     }
 }

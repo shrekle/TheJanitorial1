@@ -45,6 +45,7 @@
 		CACA6857298B08EA00611D89 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA6856298B08EA00611D89 /* LoginScreen.swift */; };
 		CACA6859298B09A800611D89 /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA6858298B09A800611D89 /* TaskListScreen.swift */; };
 		CACA685B298B09C100611D89 /* TaskFormScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA685A298B09C100611D89 /* TaskFormScreen.swift */; };
+		CAD83D6B29EF59DA00A4AF6E /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD83D6A29EF59DA00A4AF6E /* DateHelper.swift */; };
 		CAFDCB6529DB7FA700B9DCD2 /* EditProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDCB6429DB7FA700B9DCD2 /* EditProfileForm.swift */; };
 		CAFDCB6729DC70B800B9DCD2 /* TaskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDCB6629DC70B700B9DCD2 /* TaskRequest.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		CACA6856298B08EA00611D89 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		CACA6858298B09A800611D89 /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
 		CACA685A298B09C100611D89 /* TaskFormScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormScreen.swift; sourceTree = "<group>"; };
+		CAD83D6A29EF59DA00A4AF6E /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		CAFDCB6429DB7FA700B9DCD2 /* EditProfileForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileForm.swift; sourceTree = "<group>"; };
 		CAFDCB6629DC70B700B9DCD2 /* TaskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +115,7 @@
 				CA3C4F1D29CA58B400CCDF20 /* CreateProfileTextfieldStyle.swift */,
 				CA3C4F2029CA5AC200CCDF20 /* OnboardingStyleButton.swift */,
 				CA3C4F2329CA5CFF00CCDF20 /* TextHelper.swift */,
+				CAD83D6A29EF59DA00A4AF6E /* DateHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -237,8 +240,8 @@
 		CACA684A298B074700611D89 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				CA3C4F2229CA5C7800CCDF20 /* Registration Screens */,
 				CA3C4F3B29CBB84600CCDF20 /* MainRootContainer.swift */,
+				CA3C4F2229CA5C7800CCDF20 /* Registration Screens */,
 				CA90C10429E86C430023AF5F /* LoggedInRootContainer.swift */,
 				CA74116429D8C553008CE1A1 /* Staff */,
 				CA74116529D8C558008CE1A1 /* Janitors */,
@@ -254,8 +257,8 @@
 				CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */,
 				CA3C4F3929CB7CC500CCDF20 /* LoginViewModel.swift */,
 				CA4413BB29D1F2820072A107 /* RegistrationViewModel.swift */,
-				CA4413C529D255EF0072A107 /* TaskListViewModel.swift */,
 				CA74118329D90230008CE1A1 /* SendTaskViewModel.swift */,
+				CA4413C529D255EF0072A107 /* TaskListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				CA90C10529E86C430023AF5F /* LoggedInRootContainer.swift in Sources */,
 				CA74118429D90230008CE1A1 /* SendTaskViewModel.swift in Sources */,
 				CA3C4F2A29CA5E4300CCDF20 /* ImagePicker representable code snipet.swift in Sources */,
+				CAD83D6B29EF59DA00A4AF6E /* DateHelper.swift in Sources */,
 				CACA685B298B09C100611D89 /* TaskFormScreen.swift in Sources */,
 				CA3C4F3C29CBB84600CCDF20 /* MainRootContainer.swift in Sources */,
 				CA4413BC29D1F2820072A107 /* RegistrationViewModel.swift in Sources */,

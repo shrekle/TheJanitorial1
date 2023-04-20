@@ -8,10 +8,11 @@
 import SwiftUI
 
 /// use the tutorial from sean allen swiftUI form, it has all that i need to make the request form for teachers to fill out and send me with a task
-
+ 
 struct LoginScreen: View {
     
     @EnvironmentObject var loginVm: LoginViewModel
+    @EnvironmentObject private var sendTaskVM: SendTaskViewModel
     
     @State private var emailTxtF = ""
     @State private var passwordTxtF = ""
@@ -20,6 +21,7 @@ struct LoginScreen: View {
     
 //    TODO: inform user of error signing in, email or password dont match
 //    TODO: verification process of signing in with the email and password
+//    TODO:  Have login button change to "Loggin in..." like the create account button
     
     var body: some View {
         
@@ -41,9 +43,12 @@ struct LoginScreen: View {
                         Task {
                             do {
                                 try await loginVm.signIn(email: emailTxtF, password: passwordTxtF)
-                               try await loginVm.gitCurrentUser()
-                                // not too sure if this will execute even if sign in fails, with this new async await 
+                            }
+                            do {
+                                try await loginVm.gitCurrentUser()
+                                try await sendTaskVM.gitCurrentUser()
                                 loginVm.loginStatus = .isloggedIn
+
                             } catch {
                                 print("💩 error signing up: \(error)")
                             }

@@ -155,11 +155,12 @@ struct createAccountView: View {
                             if isSuccess {
                                 Task {
                                     do {
-                                        //erase this call and since the user just inputed all their data, just use it instead of making more api calls
+                                       // you can make a userModel from the info that the user just provided to make his account but youll be missing the user id, so maybe having this call here is good
                                         let currentUser = try await DatabaseService.gitCurrentUserModel()
-                                        //maybe it dont work because the viewmodels holding the current user havent initialized therefore you cant charge the state var
+                                      
                                          sendTaskVM.currentUser = currentUser
                                         loginVM.currentUser = currentUser
+                                        
                                         currentStep = .allSet
                                     } catch {
                                         print("😵 createAccountView save button: \(error)")

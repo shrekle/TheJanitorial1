@@ -21,8 +21,6 @@ struct LoggedInRootContainer: View {
             JanitorHomeScreen()
         case false:
             StaffHomeScreen()
-//        case nil:
-//            ProgressView()
         default:
             ProgressView()
         }

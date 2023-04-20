@@ -15,7 +15,6 @@ enum Eta: String, CaseIterable {
     case whenYouGetChance = "When you get a chance"
     case custom = "Custom"
 }
-/// use the tutorial from sean allen swiftUI form, it has all that i need to make the request form for teachers to fill out and send me with a task
 
 //TODO: QUICK REQUESTS: Put premade request of the most reoccuring things, Let users make a favorite requests list thing
 
@@ -132,12 +131,13 @@ struct TaskFormScreen: View {
                     }//toilet hstack
                 }//Vstack
             }//Scrolly
-            ///Button
+            ///Send Button
             Button {
                 Task {
                     do {
-                        let task = Todo(fullName: nil, todo: textEditor, eta: eta.rawValue , custom: customTextField)
-                        
+                        //need to get the image working to add to this task
+//                        let task = Todo(fullName: nil, todo: textEditor, eta: eta.rawValue, custom: customTextField, timestamp: Date())
+                        let task = Todo(userId: sendTaskVM.currentUser.id, todo: textEditor, eta: eta.rawValue, custom: customTextField, timestamp: Date())
                         try await sendTaskVM.sendTask(todo: task)
                     } catch {
                         print("🤢 error sending task, taskFormScreen button: \(error)")

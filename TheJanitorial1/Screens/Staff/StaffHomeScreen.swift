@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct StaffHomeScreen: View {
-    
-    @StateObject var VMsendTask = SendTaskViewModel()
+    // need to make this one an enviroment object, and figure out how to preload the data...or just leave it and change the other to stateObject to or obseverd object
+    @EnvironmentObject private var sendTaskVM: SendTaskViewModel
     
     @State var isPresented = false
     
@@ -19,17 +19,17 @@ struct StaffHomeScreen: View {
             ///Header
             HStack {
                 
-                ProfilePicView(user: VMsendTask.currentUser)
+                ProfilePicView(user: sendTaskVM.currentUser)
                 
-                if VMsendTask.currentUser.fullName != nil {
-                    Text(VMsendTask.currentUser.fullName ?? "")
+                if sendTaskVM.currentUser.fullName != nil {
+                    Text(sendTaskVM.currentUser.fullName ?? "")
                         .font(.title)
                         .padding(.leading)
                 } else {
                     ProgressView()
                         .padding(.leading)
                 }
-             
+                
                 Spacer()
                 
                 ///Settings Gear
@@ -44,6 +44,7 @@ struct StaffHomeScreen: View {
             }//Hstack
             
             Spacer()
+            
             ///Add task
             Button {
                 isPresented = true
@@ -56,11 +57,12 @@ struct StaffHomeScreen: View {
             }
             
             Spacer()
+            
         }//main
         .padding(.horizontal)
         .sheet(isPresented: $isPresented) {
             TaskContainer(isPresented: $isPresented)
-                .presentationDragIndicator(.visible)
+//                .presentationDragIndicator(.visible)
         }
     }
 }

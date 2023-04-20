@@ -11,6 +11,9 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import FirebaseAuth
 
+//TODO: deal with the listeners
+//TODO: learn to send notifications for the janitor side of the app
+
 final class DatabaseService {
     
     static func setUserProfile(fullName: String, image: UIImage?, isJanitor: Bool, schoolCode: Int, completion: @escaping (Bool)-> Void) {
@@ -65,6 +68,8 @@ final class DatabaseService {
         let db = Firestore.firestore()
         let currentUserID = AuthViewModel.getLoggedInUserId()
         
+        guard AuthViewModel.getLoggedInUserId() != "" else { print("😡 database gitCurrentUserModel() no user id"); return UserModel() }
+        
         var currentUser = UserModel()
         
         let userQueer = db.collection(C.users).document(currentUserID)
@@ -74,6 +79,25 @@ final class DatabaseService {
         currentUser = try doc.data(as: UserModel.self)
         
         return currentUser
+    }
+    
+    static func gitSendertUserModel(senderID: String) async throws -> UserModel {
+        
+        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return UserModel() }
+        
+        let db = Firestore.firestore()
+        
+        let senderID = senderID
+                
+        var sender = UserModel()
+        
+        let userQueer = db.collection(C.users).document(senderID)
+        
+        let doc = try await userQueer.getDocument()
+        
+        sender = try doc.data(as: UserModel.self)
+        
+        return sender
     }
     
     static func sendTask(todo: Todo, user: String) async throws {
@@ -90,6 +114,7 @@ final class DatabaseService {
         try await doc.setData(["fullName": user], merge: true)
     }
     
+//    TODO: deal with listener
     static func gitTasks(completion: @escaping (_ todos: [Todo])-> Void) {
         
         guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return }

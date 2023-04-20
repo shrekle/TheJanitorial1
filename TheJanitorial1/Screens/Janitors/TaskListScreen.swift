@@ -8,16 +8,17 @@
 import SwiftUI
 
 //TODO: JANITOR MESSAGES, TO ASK THE SENDERS QUESTIONS OR SO THEY CAN ASK ME STUFF
+//TODO: Maybe arrange the todos based on urgency(eta enum), or the timestamp, or both
 
 /// use the tutorial from sean allen swiftUI form, it has all that i need to make the request form for teachers to fill out and send me with a task
 
 //
 struct TaskListScreen: View {
-        
+    
     @StateObject private var taskListVM = TaskListViewModel()
     
     var body: some View {
-     
+        
         VStack {
             ///Heading
             HStack {
@@ -41,13 +42,51 @@ struct TaskListScreen: View {
             .padding(.top, 20)
             
             ///Task List
-            List(taskListVM.tasks) { thang in
-//            TODO: need a time stamp to order the list and see when the task was created to judge when i have to do it
-                Text(thang.todo!)
-            }
-            .sheet(isPresented: $taskListVM.isPresented) {
-            
-            }
+            List {
+                
+                ForEach(taskListVM.tasks) { task in
+                                        
+                    Button {
+                        taskListVM.isPresented = true
+                    } label: {
+                        //                  TODO: refactor the task list row to a its on view
+                        
+                        HStack {
+                          
+                            ProfilePicView(user: sender)
+                                .padding(.trailing)
+                            
+                            VStack(alignment: .leading) {
+                                
+                                Text(task.fullName!)
+                                    .bold()
+                                
+                                HStack {
+                                    
+                                    Text(DateHelper.TaskTimestampDateFrom(date: task.timestamp))
+                                        .font(.caption)
+                                    
+                                    Text(task.eta == C.custom ? task.custom! : task.eta!)
+                                    
+                                    Text(DateHelper.TaskTimestampHourFrom(date: task.timestamp))
+                                    
+                                }//Hstack
+                                .font(.callout)
+                                
+                            }// Vstack
+                        }//Hstack
+                        .tint(.black)
+                        .listRowBackground(Color.clear)
+                        .sheet(isPresented: $taskListVM.isPresented) {
+                            TaskRequest(task: task)
+                        }
+                    }
+                }//ForEach
+                .onDelete { IndexSet in
+                    //figure this out
+                }
+            }//List
+            .listStyle(.plain)
         }
         .padding()
     }
