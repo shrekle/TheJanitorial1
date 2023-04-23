@@ -7,32 +7,38 @@
 
 import SwiftUI
 
+@MainActor//remove
 struct ProfilePicView: View {
     
-    var user: UserModel
+    var currentUser: UserModel?
+    
     var cacheImage: Image? {
-        CacheService.getImage(forKey: user.image ?? "")
+        CacheService.getImage(forKey: currentUser?.image ?? "")
     }
     var body: some View {
         
         ZStack {
-            if user.image == nil {
+            if currentUser == nil {
+                ProgressView()
+            }
+            
+            else if currentUser?.image == nil {
                 ZStack {
                     Circle()
                         .foregroundColor(.white)
-                    Text(user.fullName?.prefix(1) ?? "")
+                    Text(currentUser?.fullName?.prefix(1) ?? "")
                         .bold()
                 }
             } else {
                 
                 if let cacheImage {
                     cacheImage
-                        .resizable()
+                    cacheImage.resizable()
                         .clipShape(Circle())
                         .scaledToFill()
                 } else {
                     
-                    let imageURL = URL(string: user.image!)
+                    let imageURL = URL(string: (currentUser?.image)!)
                     
                     AsyncImage(url: imageURL) { phase in
                         
@@ -45,20 +51,20 @@ struct ProfilePicView: View {
                                 .clipShape(Circle())
                                 .scaledToFill()
                                 .onAppear {
-                                    CacheService.setImage(image: image, forKey: user.image!)
+                                    CacheService.setImage(image: image, forKey: (currentUser?.image)!)
                                 }
                         case .failure:
                             ZStack {
                                 Circle()
                                     .foregroundColor(.white)
-                                Text(user.fullName?.prefix(1) ?? "")
+                                Text(currentUser?.fullName?.prefix(1) ?? "")
                                     .bold()
                             }
                         @unknown default:
                             ZStack {
                                 Circle()
                                     .foregroundColor(.white)
-                                Text(user.fullName?.prefix(1) ?? "")
+                                Text(currentUser?.fullName?.prefix(1) ?? "")
                                     .bold()
                             }
                         }
@@ -76,7 +82,7 @@ struct ProfilePicView: View {
 
 struct ProfilePicView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePicView(user: UserModel())
+        ProfilePicView(currentUser: UserModel())
     }
 }
 

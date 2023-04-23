@@ -68,7 +68,7 @@ final class DatabaseService {
         let db = Firestore.firestore()
         let currentUserID = AuthViewModel.getLoggedInUserId()
         
-        guard AuthViewModel.getLoggedInUserId() != "" else { print("😡 database gitCurrentUserModel() no user id"); return UserModel() }
+//        guard AuthViewModel.getLoggedInUserId() != "" else { print("😡 database gitCurrentUserModel() no user id"); return UserModel() }
         
         var currentUser = UserModel()
         
@@ -81,23 +81,46 @@ final class DatabaseService {
         return currentUser
     }
     
-    static func gitSendertUserModel(senderID: String) async throws -> UserModel {
-        
+    
+    static func gitSendertUserModelAsync(senderID: String) async throws-> UserModel {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return UserModel() }
-        
+    
         let db = Firestore.firestore()
         
-        let senderID = senderID
-                
         var sender = UserModel()
+    
+        let userQueer = db.collection(C.users).document(senderID)
+    
+        let doc = try await userQueer.getDocument()
+    
+        sender = try doc.data(as: UserModel.self)
+    
+        return sender
+    }
+
+    
+    
+    static func gitSendertUserModelClosure(senderID: String, completion: @escaping (UserModel)-> Void) {
         
+        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return }
+        
+        let db = Firestore.firestore()
+                
         let userQueer = db.collection(C.users).document(senderID)
         
-        let doc = try await userQueer.getDocument()
-        
-        sender = try doc.data(as: UserModel.self)
-        
-        return sender
+        userQueer.getDocument { snappy, error in
+
+            guard error == nil, let snappy else { print("👿 GitSenderUserModel() databseService, guard failed"); return }
+            
+            var sender = UserModel()
+            
+            do {
+                sender = try snappy.data(as: UserModel.self)
+                completion(sender)
+            } catch {
+                print("👹 catch block, GitSenderUserModel() databseService : \(error)")
+            }
+        }//getDocument
     }
     
     static func sendTask(todo: Todo, user: String) async throws {
@@ -133,13 +156,24 @@ final class DatabaseService {
                  do {
                      let todo = try document.data(as: Todo.self)
                      todos.append(todo)
-                     completion(todos)
-                     print("👛 DATABASE FOR IN LOOP listener: \(todo)")
                  } catch {
                      print("Error decoding Todo object: \(error)")
                  }
              }
-         }
+            completion(todos)
+         }//listener
+    }
+    
+   static func deleteTask(todoID: String) {
+        
+        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return }
+        
+        let db = Firestore.firestore()
+                
+        let userQueer = db.collection(C.tasks).document(todoID)
+       
+       userQueer.delete()
     }
 }
-  
+
+

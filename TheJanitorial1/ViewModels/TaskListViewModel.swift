@@ -8,10 +8,12 @@
 import Foundation
 
 @MainActor
-final class TaskListViewModel: ObservableObject {
+class TaskListViewModel: ObservableObject {
     
     @Published var currentUser = UserModel()
     @Published var tasks = [Todo]() // make task object
+    @Published var taskToRemove = Todo()
+    @Published var senders = [UserModel]()// maybe make this a set to avoid duplicates
     @Published var isPresented = false
     
     init() {
@@ -26,18 +28,50 @@ final class TaskListViewModel: ObservableObject {
     }
     
     func gitCurrentUser() async throws {
-         currentUser = try await DatabaseService.gitCurrentUserModel()
-        print("🥶 current user taskListVM : \(currentUser)")
-
+        currentUser = try await DatabaseService.gitCurrentUserModel()
     }
     
     func gitTasks() async throws {
         DatabaseService.gitTasks { todos in
-            self.tasks = todos
+            
+            Task {
+                do {
+                    try await self.gitSender(taskies: todos)
+                    self.tasks = todos
+                } catch {
+                    print("👻 gitTasks() TaskListVM : \(error)")
+                }
+            }
         }
     }
-    // have it throw maybe
-    func gitSender(senderID: String) async throws -> UserModel {
-        try await DatabaseService.gitSendertUserModel(senderID: senderID)
+    
+    func gitSender(taskies: [Todo]) async throws {
+        var senderArray = [UserModel]()
+
+        taskies.forEach { task in
+            Task {
+                do {
+                    let sender = try await DatabaseService.gitSendertUserModelAsync(senderID: task.userId!)
+                      senderArray.append(sender)
+                    self.senders = senderArray // if this is inside the loop then why does it matter if i put it in or outside of the do block
+                } catch {
+                    print("😽 gitSender() TaskListVM : \(error)")
+                }
+            }//Task
+        }//forEach
+    }
+    
+    func searchForUser(senderID: String)-> UserModel? {
+
+        for sender in senders {
+            if sender.id == senderID {
+                return sender
+            }
+        }
+        return nil
+    }
+    
+    func deleteTask(todoID: String) {
+        DatabaseService.deleteTask(todoID: todoID)
     }
 }

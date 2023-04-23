@@ -19,7 +19,7 @@ struct StaffHomeScreen: View {
             ///Header
             HStack {
                 
-                ProfilePicView(user: sendTaskVM.currentUser)
+                ProfilePicView(currentUser: sendTaskVM.currentUser)
                 
                 if sendTaskVM.currentUser.fullName != nil {
                     Text(sendTaskVM.currentUser.fullName ?? "")
