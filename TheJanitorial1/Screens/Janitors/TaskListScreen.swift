@@ -17,7 +17,7 @@ import SwiftUI
 //@MainActor//remove
 struct TaskListScreen: View {
     
-    @StateObject private var taskListVM = TaskListViewModel()
+    @StateObject var taskListVM = TaskListViewModel()
     
     var body: some View {
         
@@ -40,56 +40,88 @@ struct TaskListScreen: View {
                         .resizable()
                         .frame(width: 20, height: 20)
                 }
-            }
-            .padding(.top, 20)
+            }//Hstack Heading
+            .padding()
             
             ///Task List
-            List {
+            
+            if !taskListVM.tasks.isEmpty {
                 
-                ForEach(taskListVM.tasks) { task in
-                   
+                List {
                     
-                    Button {
-                        taskListVM.isPresented = true
-                    } label: {
-                        //                  TODO: refactor the task list row to a its on view
+                    ForEach(taskListVM.tasks) { task in
+                       
                         
-                        HStack {
+                        Button {
+                            taskListVM.isPresented = true
+                        } label: {
+                            //                  TODO: refactor the task list row to a its on view
                             
-                            ProfilePicView(currentUser: taskListVM.searchForUser(senderID: task.userId!))
-                                            .padding(.trailing)
-                            
-                            VStack(alignment: .leading) {
+                            HStack {
                                 
-                                Text(task.fullName!)
-                                    .bold()
+                                ProfilePicView(currentUser: taskListVM.searchForUser(senderID: task.userId!))
+                                                .padding(.trailing, 5)
                                 
-                                HStack {
+                                VStack(alignment: .center) {
+                                 
+                                        Text(task.fullName ?? "name is nil")
+                                            .bold()
+                                            .padding(.leading, 10)
+                                        
+                                    HStack(spacing: 5) {
+                                      
+                                        Text(task.eta == C.custom ? task.custom! : task.eta!)
+                                            .lineLimit(1)
+                                            .frame(maxWidth: .infinity)
+                                        
+                                    }//Hstack
+                                    .font(.callout)
+                                    
+                                }// Vstack
+                                VStack(alignment: .trailing) {
+//                                    Spacer()
                                     
                                     Text(DateHelper.TaskTimestampDateFrom(date: task.timestamp))
                                         .font(.caption)
                                     
-                                    Text(task.eta == C.custom ? task.custom! : task.eta!)
-                                    
                                     Text(DateHelper.TaskTimestampHourFrom(date: task.timestamp))
-                                    
-                                }//Hstack
-                                .font(.callout)
+                                }
                                 
-                            }// Vstack
-                        }//Hstack
-                        .tint(.black)
-                        .listRowBackground(Color.clear)
-                        .sheet(isPresented: $taskListVM.isPresented) {
-                            TaskRequest(task: task)
+                            }//Hstack
+                            .tint(.black)
+                            .listRowBackground(Color.clear)
+                            .sheet(isPresented: $taskListVM.isPresented) {
+                                TaskRequest(task: task)
+                            }
                         }
-                    }
-                }//ForEach
-                .onDelete(perform: removeTask)
-            }//List
-            .listStyle(.plain)
-        }
-        .padding()
+                    }//ForEach
+                    .onDelete(perform: removeTask)
+                }//List
+//                .listStyle(.pla)
+            } else {
+                
+                Spacer()
+                VStack {
+                    HStack(spacing: 0) {
+                        Text("NO TO ")
+                             .font(.title)
+                        
+                        Text("DOO-DOO'S!!!")
+                            .font(.title)
+                            .foregroundColor(.brown)
+                            .bold()
+                    }//Hstack
+                    
+                    Text("💩")
+                        .scaleEffect(3.5)
+                        .padding(.top)
+                }
+               
+                Spacer()
+            }
+           
+        }//MainVstack
+        .padding(.vertical)
     }
     
     //move this to the viewModel, if it works, or at least

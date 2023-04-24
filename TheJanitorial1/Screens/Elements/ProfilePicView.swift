@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@MainActor//remove
+//@MainActor//remove
 struct ProfilePicView: View {
     
     var currentUser: UserModel?
@@ -19,13 +19,14 @@ struct ProfilePicView: View {
         
         ZStack {
             if currentUser == nil {
-                ProgressView()
+//                ProgressView()
+                Text("💩")
             }
             
             else if currentUser?.image == nil {
                 ZStack {
                     Circle()
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)
                     Text(currentUser?.fullName?.prefix(1) ?? "")
                         .bold()
                 }
@@ -56,14 +57,14 @@ struct ProfilePicView: View {
                         case .failure:
                             ZStack {
                                 Circle()
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)
                                 Text(currentUser?.fullName?.prefix(1) ?? "")
                                     .bold()
                             }
                         @unknown default:
                             ZStack {
                                 Circle()
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.yellow)
                                 Text(currentUser?.fullName?.prefix(1) ?? "")
                                     .bold()
                             }

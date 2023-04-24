@@ -19,8 +19,9 @@ class TaskListViewModel: ObservableObject {
     init() {
         Task {
             do {
-                try await gitTasks()
+                try await somehting()
                 try await gitCurrentUser()
+                try await gitSenderInit()
             } catch {
                 print("👁️ tasklistVM init(): \(error)")
             }
@@ -30,25 +31,41 @@ class TaskListViewModel: ObservableObject {
     func gitCurrentUser() async throws {
         currentUser = try await DatabaseService.gitCurrentUserModel()
     }
+    ///i need a func that has both the git func and the git sender and executes them one after the other synchronously , for a more consistent result
     
-    func gitTasks() async throws {
-        DatabaseService.gitTasks { todos in
-            
-            Task {
-                do {
-                    try await self.gitSender(taskies: todos)
-                    self.tasks = todos
-                } catch {
-                    print("👻 gitTasks() TaskListVM : \(error)")
-                }
-            }
-        }
+    func somehting() async throws {
+        
+        let tasks = await gitTasks()
+        
+        try await gitSender(taskies: tasks)
+        
+        self.tasks = tasks
     }
     
-    func gitSender(taskies: [Todo]) async throws {
+    func gitTasks() async -> [Todo] {
+        return await withCheckedContinuation({ continuation in
+            DatabaseService.gitTasks { todos in
+                continuation.resume(returning: todos)
+            }
+        })
+    }
+    
+    
+//    self.tasks = todos
+                
+    //            Task {
+    //                do {
+    //                    try await self.gitSender(taskies: self.tasks)
+    //                } catch {
+    //                    print("👻 gitTasks() TaskListVM : \(error)")
+    //                }
+    //            }
+    
+    func gitSenderInit() async throws {
+        
         var senderArray = [UserModel]()
 
-        taskies.forEach { task in
+        tasks.forEach { task in
             Task {
                 do {
                     let sender = try await DatabaseService.gitSendertUserModelAsync(senderID: task.userId!)
@@ -59,6 +76,23 @@ class TaskListViewModel: ObservableObject {
                 }
             }//Task
         }//forEach
+    }
+    
+    func gitSender(taskies: [Todo]) async throws {
+        var senderArray = [UserModel]()
+
+        taskies.forEach { task in
+            Task {
+                do {
+                    let sender = try await DatabaseService.gitSendertUserModelAsync(senderID: task.userId!)
+                      senderArray.append(sender)
+                } catch {
+                    print("😽 gitSender() TaskListVM : \(error)")
+                }
+            }//Task
+        }//forEach
+        self.senders = senderArray // if this is inside the loop then why does it matter if i put it in or outside of the do block
+
     }
     
     func searchForUser(senderID: String)-> UserModel? {

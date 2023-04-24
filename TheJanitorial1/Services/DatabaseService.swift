@@ -139,7 +139,6 @@ final class DatabaseService {
     
 //    TODO: deal with listener
     static func gitTasks(completion: @escaping (_ todos: [Todo])-> Void) {
-        
         guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return }
         
         let db = Firestore.firestore()
@@ -148,7 +147,7 @@ final class DatabaseService {
         
         let listener = collection.addSnapshotListener { snapshot, error in
             
-            guard let snapshot = snapshot else { print("Error fetching snapshot: \(String(describing: error))"); return }
+            guard let snapshot else { print("Error fetching snapshot: \(String(describing: error))"); return }
 
             var todos = [Todo]()
 
@@ -160,6 +159,7 @@ final class DatabaseService {
                      print("Error decoding Todo object: \(error)")
                  }
              }
+            print("🫁 completion in database, todos array : \(todos)")
             completion(todos)
          }//listener
     }
