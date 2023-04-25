@@ -19,6 +19,7 @@ struct TheJanitorial1App: App {
             MainRootContainer()
                 .environmentObject(LoginViewModel())
                 .environmentObject(SendTaskViewModel())
+                .environmentObject(TaskListViewModel())
         }
     }
 }

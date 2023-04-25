@@ -16,24 +16,17 @@ struct ProfilePicView: View {
         CacheService.getImage(forKey: currentUser?.image ?? "")
     }
     var body: some View {
-        
         ZStack {
-            if currentUser == nil {
-//                ProgressView()
-                Text("💩")
-            }
-            
-            else if currentUser?.image == nil {
+            if currentUser?.image == nil {
                 ZStack {
                     Circle()
-                        .foregroundColor(.blue)
+                        .foregroundColor(.white)
                     Text(currentUser?.fullName?.prefix(1) ?? "")
                         .bold()
                 }
             } else {
                 
                 if let cacheImage {
-                    cacheImage
                     cacheImage.resizable()
                         .clipShape(Circle())
                         .scaledToFill()
@@ -57,14 +50,14 @@ struct ProfilePicView: View {
                         case .failure:
                             ZStack {
                                 Circle()
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                                 Text(currentUser?.fullName?.prefix(1) ?? "")
                                     .bold()
                             }
                         @unknown default:
                             ZStack {
                                 Circle()
-                                    .foregroundColor(.yellow)
+                                    .foregroundColor(.white)
                                 Text(currentUser?.fullName?.prefix(1) ?? "")
                                     .bold()
                             }
@@ -74,8 +67,7 @@ struct ProfilePicView: View {
             }
             Circle()
                 .stroke(.blue, lineWidth: 2)
-            
-        } // ZStack
+        }
         .frame(width: 44, height: 44)
     }
     

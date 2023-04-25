@@ -10,7 +10,10 @@ import SwiftUI
 struct MainRootContainer: View {
     
     @EnvironmentObject var loginVM: LoginViewModel
-  
+    @EnvironmentObject var taskListVM: TaskListViewModel
+    
+    @Environment(\.scenePhase) var scenePhase
+    
     var body: some View {
         ZStack {
             
@@ -25,6 +28,16 @@ struct MainRootContainer: View {
                 case .isloggedOut:
                     LoginScreen()
                 }
+            }
+        }
+        .onChange(of: scenePhase) { newPhase  in
+            if newPhase == .active {
+                print("active")
+            } else if newPhase == .inactive {
+                print("inactive")
+            } else if newPhase == .background {
+                print("background")
+                taskListVM.taskListCleanUp()
             }
         }
     }

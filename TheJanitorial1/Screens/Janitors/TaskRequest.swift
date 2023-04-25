@@ -14,8 +14,21 @@ struct TaskRequest: View {
      var task: Todo
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ///heading
+            Text("💩 Task Description:")
+                .font(.title)
             
+            Divider()
+            
+            Text(task.todo!)
+            Text(task.eta!)
+            Text(task.fullName!)
+            Text(task.id!)
+
+
+
+        }
     }
 }
 

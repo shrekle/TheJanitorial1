@@ -16,6 +16,8 @@ import FirebaseAuth
 
 final class DatabaseService {
     
+    static var taskListener = [ListenerRegistration]()
+    
     static func setUserProfile(fullName: String, image: UIImage?, isJanitor: Bool, schoolCode: Int, completion: @escaping (Bool)-> Void) {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }
         
@@ -67,63 +69,16 @@ final class DatabaseService {
         
         let db = Firestore.firestore()
         let currentUserID = AuthViewModel.getLoggedInUserId()
-        
-//        guard AuthViewModel.getLoggedInUserId() != "" else { print("😡 database gitCurrentUserModel() no user id"); return UserModel() }
-        
         var currentUser = UserModel()
-        
         let userQueer = db.collection(C.users).document(currentUserID)
-        
         let doc = try await userQueer.getDocument()
         
         currentUser = try doc.data(as: UserModel.self)
         
         return currentUser
     }
-    
-    
-    static func gitSendertUserModelAsync(senderID: String) async throws-> UserModel {
-        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return UserModel() }
-    
-        let db = Firestore.firestore()
-        
-        var sender = UserModel()
-    
-        let userQueer = db.collection(C.users).document(senderID)
-    
-        let doc = try await userQueer.getDocument()
-    
-        sender = try doc.data(as: UserModel.self)
-    
-        return sender
-    }
 
-    
-    
-    static func gitSendertUserModelClosure(senderID: String, completion: @escaping (UserModel)-> Void) {
-        
-        guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return }
-        
-        let db = Firestore.firestore()
-                
-        let userQueer = db.collection(C.users).document(senderID)
-        
-        userQueer.getDocument { snappy, error in
-
-            guard error == nil, let snappy else { print("👿 GitSenderUserModel() databseService, guard failed"); return }
-            
-            var sender = UserModel()
-            
-            do {
-                sender = try snappy.data(as: UserModel.self)
-                completion(sender)
-            } catch {
-                print("👹 catch block, GitSenderUserModel() databseService : \(error)")
-            }
-        }//getDocument
-    }
-    
-    static func sendTask(todo: Todo, user: String) async throws {
+    static func sendTask(todo: Todo) async throws {
         
         let db = Firestore.firestore()
         
@@ -134,20 +89,18 @@ final class DatabaseService {
                 print("😵‍💫 error sendTask(): \(error)")
             }
         }
-        try await doc.setData(["fullName": user], merge: true)
     }
     
-//    TODO: deal with listener
     static func gitTasks(completion: @escaping (_ todos: [Todo])-> Void) {
+        
         guard AuthViewModel.isUserLoggedIn() else { print("💩 database gitCurrentUserModel() user aint logged in");  return }
         
         let db = Firestore.firestore()
-        
-        let collection = db.collection(C.tasks)//.order(by: "timestamp")
+        let collection = db.collection(C.tasks).order(by: "timestamp")//.order(by: "timestamp")
         
         let listener = collection.addSnapshotListener { snapshot, error in
             
-            guard let snapshot else { print("Error fetching snapshot: \(String(describing: error))"); return }
+            guard let snapshot else { print("👻 Error fetching snapshot: \(String(describing: error))"); return }
 
             var todos = [Todo]()
 
@@ -156,12 +109,12 @@ final class DatabaseService {
                      let todo = try document.data(as: Todo.self)
                      todos.append(todo)
                  } catch {
-                     print("Error decoding Todo object: \(error)")
+                     print("👻 Error decoding Todo object: \(error)")
                  }
              }
-            print("🫁 completion in database, todos array : \(todos)")
             completion(todos)
          }//listener
+        taskListener.append(listener)
     }
     
    static func deleteTask(todoID: String) {
@@ -174,6 +127,12 @@ final class DatabaseService {
        
        userQueer.delete()
     }
+    
+    static func detachTaskListeners() {
+        taskListener.forEach { listener in
+            listener.remove()
+        }
+     }
 }
 
 

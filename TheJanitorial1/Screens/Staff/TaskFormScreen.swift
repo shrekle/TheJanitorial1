@@ -137,7 +137,7 @@ struct TaskFormScreen: View {
                     do {
                         //need to get the image working to add to this task
 //                        let task = Todo(fullName: nil, todo: textEditor, eta: eta.rawValue, custom: customTextField, timestamp: Date())
-                        let task = Todo(userId: sendTaskVM.currentUser.id, todo: textEditor, eta: eta.rawValue, custom: customTextField, timestamp: Date())
+                        let task = Todo(userId: sendTaskVM.currentUser.id, fullName: sendTaskVM.currentUser.fullName, senderProfilePicUrl: sendTaskVM.currentUser.image, todo: textEditor, eta: eta.rawValue, custom: customTextField, timestamp: Date())
                         try await sendTaskVM.sendTask(todo: task)
                     } catch {
                         print("🤢 error sending task, taskFormScreen button: \(error)")

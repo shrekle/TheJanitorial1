@@ -12,6 +12,7 @@ struct Todo: Codable, Identifiable {
     @DocumentID var id: String?
     var userId: String?
     var fullName: String?
+    var senderProfilePicUrl: String?
     var todo: String?
     var eta: String?
     var custom: String?

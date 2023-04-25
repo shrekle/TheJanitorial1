@@ -19,6 +19,12 @@ struct TaskListScreen: View {
     
     @StateObject var taskListVM = TaskListViewModel()
     
+    @State private var task: Todo? = nil
+    
+    func printthing(task:Todo) {
+        print(task)
+    }
+    
     var body: some View {
         
         VStack {
@@ -59,7 +65,7 @@ struct TaskListScreen: View {
                             
                             HStack {
                                 
-                                ProfilePicView(currentUser: taskListVM.searchForUser(senderID: task.userId!))
+                                ProfilePicView(currentUser: taskListVM.taskIntoUserModel(task: task))
                                                 .padding(.trailing, 5)
                                 
                                 VStack(alignment: .center) {
@@ -79,8 +85,7 @@ struct TaskListScreen: View {
                                     
                                 }// Vstack
                                 VStack(alignment: .trailing) {
-//                                    Spacer()
-                                    
+                                     
                                     Text(DateHelper.TaskTimestampDateFrom(date: task.timestamp))
                                         .font(.caption)
                                     
@@ -90,17 +95,25 @@ struct TaskListScreen: View {
                             }//Hstack
                             .tint(.black)
                             .listRowBackground(Color.clear)
-                            .sheet(isPresented: $taskListVM.isPresented) {
+                            .sheet(item: self.$task, content: { task in
                                 TaskRequest(task: task)
-                            }
+
+                            })
+//                            .sheet(isPresented: $taskListVM.isPresented) {
+//                            
+//                            }
+                        }
+                        .onTapGesture {
+                            self.task = task
                         }
                     }//ForEach
                     .onDelete(perform: removeTask)
                 }//List
-//                .listStyle(.pla)
+                .listStyle(.plain)
             } else {
                 
                 Spacer()
+                
                 VStack {
                     HStack(spacing: 0) {
                         Text("NO TO ")
@@ -122,6 +135,9 @@ struct TaskListScreen: View {
            
         }//MainVstack
         .padding(.vertical)
+        .onDisappear {
+            taskListVM.taskListCleanUp()
+        }
     }
     
     //move this to the viewModel, if it works, or at least
