@@ -12,6 +12,7 @@ struct StaffHomeScreen: View {
     @EnvironmentObject private var sendTaskVM: SendTaskViewModel
     
     @State var isPresented = false
+    @State private var isSettingsViewShowing = false
     
     var body: some View {
         
@@ -35,7 +36,7 @@ struct StaffHomeScreen: View {
                 ///Settings Gear
                 //TODO: change profile info, change email or password
                 Button {
-                    AuthViewModel.logOut()
+                    isSettingsViewShowing = true
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .resizable()
@@ -63,6 +64,9 @@ struct StaffHomeScreen: View {
         .sheet(isPresented: $isPresented) {
             TaskContainer(isPresented: $isPresented)
 //                .presentationDragIndicator(.visible)
+        }
+        .fullScreenCover(isPresented: $isSettingsViewShowing) {
+                SettingsScreen(isSettingViewShowing: $isSettingsViewShowing)
         }
     }
 }

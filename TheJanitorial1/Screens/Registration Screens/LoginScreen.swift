@@ -25,6 +25,7 @@ struct LoginScreen: View {
     
     var body: some View {
         
+        ///why is this under a navigation stack???
         NavigationStack {    
                 ZStack {
                 Color(.lightGray)
@@ -67,6 +68,7 @@ struct LoginScreen: View {
                 .sheet(isPresented: $loginVm.isRegistrationSheetPresented) {
                     RegistrationContainerView()
                         .presentationDragIndicator(.visible)
+                        
                 }
                 .padding()
             }

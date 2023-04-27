@@ -206,6 +206,10 @@ struct createAccountView: View {
             }// vstack Main
             .padding(.horizontal, 20)
         }
+        .onTapGesture {
+            scrollDismissesKeyboard(ScrollDismissesKeyboardMode.immediately)// find something that works for the keyboard
+            
+        }
     }
 }
 

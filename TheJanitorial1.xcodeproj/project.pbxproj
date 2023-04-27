@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA203E4D29F9D1E5006E6727 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA203E4C29F9D1E5006E6727 /* SettingsViewModel.swift */; };
 		CA3C4F1E29CA58B500CCDF20 /* CreateProfileTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F1D29CA58B400CCDF20 /* CreateProfileTextfieldStyle.swift */; };
 		CA3C4F2129CA5AC200CCDF20 /* OnboardingStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2029CA5AC200CCDF20 /* OnboardingStyleButton.swift */; };
 		CA3C4F2429CA5CFF00CCDF20 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2329CA5CFF00CCDF20 /* TextHelper.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA203E4C29F9D1E5006E6727 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CA3C4F1D29CA58B400CCDF20 /* CreateProfileTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileTextfieldStyle.swift; sourceTree = "<group>"; };
 		CA3C4F2029CA5AC200CCDF20 /* OnboardingStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStyleButton.swift; sourceTree = "<group>"; };
 		CA3C4F2329CA5CFF00CCDF20 /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */,
+				CA203E4C29F9D1E5006E6727 /* SettingsViewModel.swift */,
 				CA3C4F3929CB7CC500CCDF20 /* LoginViewModel.swift */,
 				CA4413BB29D1F2820072A107 /* RegistrationViewModel.swift */,
 				CA74118329D90230008CE1A1 /* SendTaskViewModel.swift */,
@@ -387,6 +390,7 @@
 				CA3C4F1E29CA58B500CCDF20 /* CreateProfileTextfieldStyle.swift in Sources */,
 				CA3C4F3329CAA39B00CCDF20 /* RegistrationContainerView.swift in Sources */,
 				CA3C4F3A29CB7CC500CCDF20 /* LoginViewModel.swift in Sources */,
+				CA203E4D29F9D1E5006E6727 /* SettingsViewModel.swift in Sources */,
 				CA90C10329E777120023AF5F /* JanitorHomeScreen.swift in Sources */,
 				CA4784A529C2488800FDF4F1 /* AuthViewModel.swift in Sources */,
 				CA3C4F2429CA5CFF00CCDF20 /* TextHelper.swift in Sources */,

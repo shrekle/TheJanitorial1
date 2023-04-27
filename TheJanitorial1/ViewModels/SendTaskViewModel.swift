@@ -5,7 +5,7 @@
 //  Created by adrian garcia on 4/1/23.
 //
 
-import Foundation
+import SwiftUI
 
 @MainActor
 final class SendTaskViewModel: ObservableObject {
@@ -25,9 +25,9 @@ final class SendTaskViewModel: ObservableObject {
          currentUser = try await DatabaseService.gitCurrentUserModel()
     }
     
-    func sendTask(todo: Todo) async throws {
+    func sendTask(todo: Todo, image: UIImage?) async throws {
         guard currentUser.fullName != nil else { print("🥰 sentTaskVM sendTask(), currrentUser.fullName is nil"); return }
         
-        try await DatabaseService.sendTask(todo: todo)
+        try await DatabaseService.sendTask(todo: todo, image: image)
     }
 }
