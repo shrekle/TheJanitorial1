@@ -37,7 +37,7 @@ struct MainRootContainer: View {
                 print("inactive")
             } else if newPhase == .background {
                 print("background")
-                taskListVM.taskListCleanUp()
+//                taskListVM.taskListCleanUp()
             }
         }
     }

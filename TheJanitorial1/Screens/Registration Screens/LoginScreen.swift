@@ -44,11 +44,14 @@ struct LoginScreen: View {
                         Task {
                             do {
                                 try await loginVm.signIn(email: emailTxtF, password: passwordTxtF)
-                            }
-                            do {
                                 try await loginVm.gitCurrentUser()
                                 try await sendTaskVM.gitCurrentUser()
                                 loginVm.loginStatus = .isloggedIn
+                            } catch {
+                                print("🗣️ loginScreen : \(error)")
+                            }
+                            do {
+                               //i put the other funcs in the previous do block...gitcurrentUser and senTaskVM
 
                             } catch {
                                 print("💩 error signing up: \(error)")

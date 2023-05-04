@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-class TaskListViewModel: ObservableObject {
+final class TaskListViewModel: ObservableObject {
     
     @Published var currentUser = UserModel()
     @Published var tasks = [Todo]() // make task object
@@ -21,7 +21,6 @@ class TaskListViewModel: ObservableObject {
             do {
                 try await gitCurrentUser()
                 try await gitTasks()
-                print("🤡 tasks form init() : \(tasks)")
             } catch {
                 print("👁️ tasklistVM init(): \(error)")
             }
@@ -32,12 +31,27 @@ class TaskListViewModel: ObservableObject {
         currentUser = try await DatabaseService.gitCurrentUserModel()
     }
    
+    func gitTasksInit() async throws {
+        print("🦷 gitTasksInit() taskListVM")
+        tasks = try await DatabaseService.gitTasksInit()
+    }
+    
     func gitTasks() async throws {
-        return try await withCheckedThrowingContinuation({ continuation in
-            DatabaseService.gitTasks { tasks in
-                self.tasks = tasks
+        print("💋 gitTasks() taskListVM")
+        
+        DatabaseService.gitTasks { todos in
+            self.tasks = todos
+            Task{
+                NotificationService.showNotification
             }
-        })
+        }
+//         try await withCheckedThrowingContinuation({ continuation in
+//            DatabaseService.gitTasks { tasks in
+//                self.tasks = tasks
+//                try? await NotificationService.showNotification()
+//                continuation.resume(returning: ())
+//            }
+//        })
     }
 
     func taskIntoUserModel(task: Todo)-> UserModel {
@@ -48,7 +62,7 @@ class TaskListViewModel: ObservableObject {
         DatabaseService.deleteTask(todoID: todoID)
     }
     
-    func taskListCleanUp() {
-        DatabaseService.detachTaskListeners()
-    }
+//    func taskListCleanUp() {
+//        DatabaseService.detachTaskListeners()
+//    }
 }

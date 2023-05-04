@@ -19,14 +19,15 @@ import SwiftUI
 
 struct EditProfileForm: View {
     
-
+    @ObservedObject var settingsVM: SettingsViewModel
+    
+    @Binding var isEditProfileFormShowing: Bool
+    
     @State private var fullName = ""
-    @State private var email = ""
-    @State private var password = ""
     
     //my Pickers
-       @State var jobDescription = JobDescription.OtherStaff
-       @State var school = School.middleSchool
+    @State var jobDescription = JobDescription.OtherStaff
+    @State var school = School.middleSchool
     
     //Image PIcker
     @State var selectedImage: UIImage?
@@ -42,7 +43,6 @@ struct EditProfileForm: View {
             return false
         case .janitor:
             return true
-            
         }
     }
     
@@ -99,6 +99,7 @@ struct EditProfileForm: View {
             }
                         ///Pickers
             VStack {
+                
                 HStack {
                     Text("Update your Job Description:")
                     Spacer()
@@ -133,32 +134,21 @@ struct EditProfileForm: View {
             Button {
                 isSaveButtonDisabaled = true
                 
+                var name: String? {
+                    if fullName == "" {
+                        return nil
+                    } else {
+                        return fullName
+                    }
+                }
+                
                 Task {
                     do {
-                        try await RegistrationViewModel.signUp(email: email, password: password)
+                        try await settingsVM.updateUserProfile(fullName: name, profileImage: selectedImage, isJanitor: isJanitor, schoolCode: school.rawValue)
+                        isEditProfileFormShowing = false
                     } catch {
                         print("🥵 error in the button to register user: \(error)")
                     }
-//                    DatabaseService.setUserProfile(fullName: fullName, image: selectedImage, isJanitor: isJanitor, schoolCode: school.rawValue) { isSuccess in
-//                        if isSuccess {
-//                            Task {
-//                                do {
-//                                   // you can make a userModel from the info that the user just provided to make his account but youll be missing the user id, so maybe having this call here is good
-//                                    let currentUser = try await DatabaseService.gitCurrentUserModel()
-//
-//                                     sendTaskVM.currentUser = currentUser
-//                                    loginVM.currentUser = currentUser
-//
-//                                    currentStep = .allSet
-//                                } catch {
-//                                    print("😵 createAccountView save button: \(error)")
-//                                }
-//                            }
-//                        } else {
-//                            print("💩 loading failed")
-//                            isSaveButtonDisabaled = false
-//                        }
-//                    }// SetProfile Closure
                 }//Task
                 
             } label: {
@@ -192,11 +182,15 @@ struct EditProfileForm: View {
                 }
             }
         }// vstack Main
-        .padding(.horizontal, 20)    }
+        .padding(.horizontal, 20)
+        .onAppear {
+            fullName = settingsVM.currentUser.fullName ?? ""
+        }
+    }
 }
 
 struct EditProfileForm_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileForm()
+        EditProfileForm(settingsVM: SettingsViewModel(), isEditProfileFormShowing: .constant(false))
     }
 }

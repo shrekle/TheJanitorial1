@@ -46,7 +46,7 @@ struct TaskRequest: View {
                     .padding(.trailing, 54)
                 
                 Spacer()
-            }
+            }//Hstack
             
             Divider()
                 .padding(.horizontal)
@@ -65,61 +65,59 @@ struct TaskRequest: View {
             Text(task.todo!)
                 .padding(.leading)
             
+            ///Sent Image
             if imageUrl != nil {
                
                 Text("Image:")
                     .bold()
                     .padding(.top)
                 
-                if let cacheImage {
-                    cacheImage
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(radius: 5)
-                } else {
-                    AsyncImage(url: imageUrl) {  phase in
+                HStack {
+                    
+                    Spacer()
+                    
+                    if let cacheImage {
+                        cacheImage
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(radius: 5)
+                    } else {
                         
-                        switch phase {
-                        case .empty:
+                        AsyncImage(url: imageUrl) {  phase in
                             
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                Spacer()
+                            switch phase {
+                            case .empty:
+                                
+                                HStack {
+                                    Spacer()
+                                    ProgressView()
+                                    Spacer()
+                                }
+                                .padding(.top, 70)
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .shadow(radius: 5)
+                                    .onAppear {
+                                        CacheService.setImage(image: image, forKey: task.imageUrl ?? "")
+                                    }
+                            case .failure:
+                                Image(uiImage: UIImage())
+                         
+                            @unknown default:
+                                Image(uiImage: UIImage())
                             }
-                            .padding(.top, 70)
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .shadow(radius: 5)
-                                                    .onAppear {
-                                                        CacheService.setImage(image: image, forKey: task.imageUrl ?? "")
-                                                    }
-                        case .failure:
-                            Image(uiImage: UIImage())
-                            //                    ZStack {
-                            //                        Circle()
-                            //                            .foregroundColor(.white)
-                            //                        Text(currentUser?.fullName?.prefix(1) ?? "")
-                            //                            .bold()
-                            //                    }
-                        @unknown default:
-                            Image(uiImage: UIImage())
-                            //                    ZStack {
-                            //                        Circle()
-                            //                            .foregroundColor(.white)
-                            //                        Text(currentUser?.fullName?.prefix(1) ?? "")
-                            //                            .bold()
-                            //                    }
-                        }
-                    }// Async Image
-                }
+                        }// Async Image
+                    }//if/let
+                    
+                    Spacer()
+                    
+                }//Hstack image
             }
         
-            
             Spacer()
             
         }//Main VStack

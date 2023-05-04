@@ -1,0 +1,10 @@
+
+TODO'S:
+
+-   delete the tasks and user from the database, not just the auth
+
+
+//TODO: QUICK REQUESTS: Put premade request of the most reoccuring things, Let users make a favorite requests list thing
+ 
+ - add a buble or cicle or some crap to indicate which tasks i havent opened or clicked on
+        -have a bool set to true on showing the buble and false once clicked on

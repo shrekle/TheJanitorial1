@@ -17,7 +17,7 @@ struct TaskListScreen: View {
     @State private var task: Todo? = nil
     
     @State private var isSettingViewShowing = false
-   
+    
     var body: some View {
         
         VStack {
@@ -48,7 +48,7 @@ struct TaskListScreen: View {
                 List {
                     
                     ForEach(taskListVM.tasks) { task in
-                       
+                        
                         
                         Button {
                             taskListVM.isPresented = true
@@ -58,16 +58,16 @@ struct TaskListScreen: View {
                             HStack {
                                 
                                 ProfilePicView(currentUser: taskListVM.taskIntoUserModel(task: task))
-                                                .padding(.trailing, 5)
+                                    .padding(.trailing, 5)
                                 
                                 VStack(alignment: .center) {
-                                 
-                                        Text(task.fullName ?? "name is nil")
-                                            .bold()
-                                            .padding(.leading, 10)
-                                        
+                                    
+                                    Text(task.fullName ?? "name is nil")
+                                        .bold()
+                                        .padding(.leading, 10)
+                                    
                                     HStack(spacing: 5) {
-                                      
+                                        
                                         Text(task.eta == C.custom ? task.custom! : task.eta!)
                                             .lineLimit(1)
                                             .frame(maxWidth: .infinity)
@@ -77,7 +77,7 @@ struct TaskListScreen: View {
                                     
                                 }// Vstack
                                 VStack(alignment: .trailing) {
-                                     
+                                    
                                     Text(DateHelper.TaskTimestampDateFrom(date: task.timestamp))
                                         .font(.caption)
                                     
@@ -89,11 +89,11 @@ struct TaskListScreen: View {
                             .listRowBackground(Color.clear)
                             .sheet(item: self.$task, content: { task in
                                 TaskRequest(task: task)
-
+                                
                             })
-//                            .sheet(isPresented: $taskListVM.isPresented) {
-//                            
-//                            }
+                            //                            .sheet(isPresented: $taskListVM.isPresented) {
+                            //                            
+                            //                            }
                         }
                         .onTapGesture {
                             self.task = task
@@ -109,7 +109,7 @@ struct TaskListScreen: View {
                 VStack {
                     HStack(spacing: 0) {
                         Text("NO TO ")
-                             .font(.title)
+                            .font(.title)
                         
                         Text("DOO-DOO'S!!!")
                             .font(.title)
@@ -121,18 +121,18 @@ struct TaskListScreen: View {
                         .scaleEffect(3.5)
                         .padding(.top)
                 }
-               
+                
                 Spacer()
             }
         }//MainVstack
         .padding(.vertical)
         ///Sheet
         .fullScreenCover(isPresented: $isSettingViewShowing) {
-                SettingsScreen(isSettingViewShowing: $isSettingViewShowing)
-
-    }
+            SettingsScreen(isSettingViewShowing: $isSettingViewShowing)
+            
+        }
         .onDisappear {
-            taskListVM.taskListCleanUp()
+            //            taskListVM.taskListCleanUp()
         }
     }
     

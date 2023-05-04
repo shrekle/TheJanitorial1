@@ -15,6 +15,7 @@ enum currentStatus: Int {
 
 @MainActor
 final class LoginViewModel: ObservableObject {
+    
     @Published var currentUser = UserModel()
     @Published var loginStatus: currentStatus = .isloggedOut
     @Published var isRegistrationSheetPresented = false

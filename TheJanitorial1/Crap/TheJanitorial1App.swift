@@ -7,13 +7,13 @@
 
 import SwiftUI
 import Firebase
+import UserNotifications
 
 @main
 struct TheJanitorial1App: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
-    
     var body: some Scene {
         WindowGroup {
             MainRootContainer()
@@ -24,4 +24,12 @@ struct TheJanitorial1App: App {
     }
 }
 
+//class AppDelegate: NSObject, UIApplicationDelegate {
+//    let gcmMessageIDKey = "gcm.message_id"
+//
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//        FirebaseApp.configure()
+//        FIRMessaging.messaging
+//    }
+//}
 

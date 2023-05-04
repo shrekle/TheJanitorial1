@@ -16,8 +16,6 @@ enum Eta: String, CaseIterable {
     case custom = "Custom"
 }
 
-//TODO: QUICK REQUESTS: Put premade request of the most reoccuring things, Let users make a favorite requests list thing
-
 struct TaskFormScreen: View {
     
     @EnvironmentObject var sendTaskVM: SendTaskViewModel

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CA203E4D29F9D1E5006E6727 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA203E4C29F9D1E5006E6727 /* SettingsViewModel.swift */; };
+		CA203E5129FD6EFB006E6727 /* TODO'S in Resources */ = {isa = PBXBuildFile; fileRef = CA203E5029FD6EFA006E6727 /* TODO'S */; };
+		CA203E5329FD8B81006E6727 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CA203E5229FD8B81006E6727 /* FirebaseAnalytics */; };
+		CA203E5529FD8B87006E6727 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CA203E5429FD8B87006E6727 /* FirebaseMessaging */; };
 		CA3C4F1E29CA58B500CCDF20 /* CreateProfileTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F1D29CA58B400CCDF20 /* CreateProfileTextfieldStyle.swift */; };
 		CA3C4F2129CA5AC200CCDF20 /* OnboardingStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2029CA5AC200CCDF20 /* OnboardingStyleButton.swift */; };
 		CA3C4F2429CA5CFF00CCDF20 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F2329CA5CFF00CCDF20 /* TextHelper.swift */; };
@@ -26,6 +29,7 @@
 		CA4413C629D255F00072A107 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4413C529D255EF0072A107 /* TaskListViewModel.swift */; };
 		CA4413C829D259CA0072A107 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4413C729D259CA0072A107 /* Todo.swift */; };
 		CA4784A529C2488800FDF4F1 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */; };
+		CA74050C2A0413BC004796B1 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74050B2A0413BC004796B1 /* NotificationService.swift */; };
 		CA74116129D8C0DC008CE1A1 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74116029D8C0DC008CE1A1 /* SettingsScreen.swift */; };
 		CA74116329D8C509008CE1A1 /* StaffHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74116229D8C509008CE1A1 /* StaffHomeScreen.swift */; };
 		CA74118129D8CEB1008CE1A1 /* ProfilePicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74118029D8CEB1008CE1A1 /* ProfilePicView.swift */; };
@@ -53,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		CA203E4C29F9D1E5006E6727 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		CA203E5029FD6EFA006E6727 /* TODO'S */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TODO'S"; sourceTree = "<group>"; };
 		CA3C4F1D29CA58B400CCDF20 /* CreateProfileTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileTextfieldStyle.swift; sourceTree = "<group>"; };
 		CA3C4F2029CA5AC200CCDF20 /* OnboardingStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStyleButton.swift; sourceTree = "<group>"; };
 		CA3C4F2329CA5CFF00CCDF20 /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 		CA4784A229C2471B00FDF4F1 /* TheJanitorial1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheJanitorial1.entitlements; sourceTree = "<group>"; };
 		CA4784A329C2481E00FDF4F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		CA74050B2A0413BC004796B1 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		CA74116029D8C0DC008CE1A1 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		CA74116229D8C509008CE1A1 /* StaffHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffHomeScreen.swift; sourceTree = "<group>"; };
 		CA74118029D8CEB1008CE1A1 /* ProfilePicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicView.swift; sourceTree = "<group>"; };
@@ -101,6 +107,8 @@
 			files = (
 				CA3C4F3129CA991500CCDF20 /* FirebaseFirestoreSwift in Frameworks */,
 				CACA6851298B08A100611D89 /* FirebaseDatabase in Frameworks */,
+				CA203E5529FD8B87006E6727 /* FirebaseMessaging in Frameworks */,
+				CA203E5329FD8B81006E6727 /* FirebaseAnalytics in Frameworks */,
 				CACA6855298B08A100611D89 /* FirebaseStorage in Frameworks */,
 				CACA684F298B08A100611D89 /* FirebaseAuth in Frameworks */,
 				CACA6853298B08A100611D89 /* FirebaseFirestore in Frameworks */,
@@ -155,6 +163,7 @@
 			children = (
 				CA3C4F3529CB68DF00CCDF20 /* DatabaseService.swift */,
 				CABE35B629E60423006EB047 /* CacheService.swift */,
+				CA74050B2A0413BC004796B1 /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -216,6 +225,7 @@
 		CACA683B298B071E00611D89 /* TheJanitorial1 */ = {
 			isa = PBXGroup;
 			children = (
+				CA203E5029FD6EFA006E6727 /* TODO'S */,
 				CACA684A298B074700611D89 /* Screens */,
 				CACA684B298B075700611D89 /* ViewModels */,
 				CA3C4F1C29CA58A400CCDF20 /* Helpers */,
@@ -306,6 +316,8 @@
 				CACA6852298B08A100611D89 /* FirebaseFirestore */,
 				CACA6854298B08A100611D89 /* FirebaseStorage */,
 				CA3C4F3029CA991500CCDF20 /* FirebaseFirestoreSwift */,
+				CA203E5229FD8B81006E6727 /* FirebaseAnalytics */,
+				CA203E5429FD8B87006E6727 /* FirebaseMessaging */,
 			);
 			productName = TheJanitorial1;
 			productReference = CACA6839298B071E00611D89 /* TheJanitorial1.app */;
@@ -354,6 +366,7 @@
 			files = (
 				CACA6844298B072000611D89 /* Preview Assets.xcassets in Resources */,
 				CACA6841298B072000611D89 /* Assets.xcassets in Resources */,
+				CA203E5129FD6EFB006E6727 /* TODO'S in Resources */,
 				CA3C4F4029CBF20700CCDF20 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +401,7 @@
 				CAFDCB6729DC70B800B9DCD2 /* TaskRequest.swift in Sources */,
 				CAFDCB6529DB7FA700B9DCD2 /* EditProfileForm.swift in Sources */,
 				CA3C4F1E29CA58B500CCDF20 /* CreateProfileTextfieldStyle.swift in Sources */,
+				CA74050C2A0413BC004796B1 /* NotificationService.swift in Sources */,
 				CA3C4F3329CAA39B00CCDF20 /* RegistrationContainerView.swift in Sources */,
 				CA3C4F3A29CB7CC500CCDF20 /* LoginViewModel.swift in Sources */,
 				CA203E4D29F9D1E5006E6727 /* SettingsViewModel.swift in Sources */,
@@ -622,6 +636,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CA203E5229FD8B81006E6727 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CACA684D298B08A100611D89 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		CA203E5429FD8B87006E6727 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CACA684D298B08A100611D89 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		CA3C4F3029CA991500CCDF20 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CACA684D298B08A100611D89 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

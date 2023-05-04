@@ -16,6 +16,7 @@ final class AuthViewModel {
     
     static func getLoggedInUserId()-> String {
         Auth.auth().currentUser?.uid ?? ""
+        
     }
     
     static func logOut() {

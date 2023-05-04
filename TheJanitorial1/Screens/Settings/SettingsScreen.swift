@@ -7,7 +7,12 @@
 
 import SwiftUI
 
+
 struct SettingsScreen: View {
+    
+    @EnvironmentObject private var loginVM: LoginViewModel
+
+    @StateObject private var settingsVM = SettingsViewModel()
     
     @Binding var isSettingViewShowing: Bool
     
@@ -43,14 +48,16 @@ struct SettingsScreen: View {
                 
                 Section {
                     
-                    Button {
-                       isEditProfileFormShowing = true
-                    } label: {
-                        Text("Edit Profile")
-                    }
+//                    Button {
+//                       isEditProfileFormShowing = true
+//                    } label: {
+//                        Text("Edit Profile")
+//                    }
 
                     Button {
-                        AuthViewModel.logOut()
+                        settingsVM.logOut()
+                        loginVM.loginStatus = .isloggedOut
+
                     } label: {
                         Text("Log Out")
                     }
@@ -59,7 +66,17 @@ struct SettingsScreen: View {
                     Section {
                         
                         Button {
-                            AuthViewModel.logOut()
+                            Task{
+                                do {
+                                    print("👀 account deleted")
+                                   try await settingsVM.deleteAccount()
+                                    loginVM.loginStatus = .isloggedOut
+                                    print("🧠 account deleted")
+                                } catch {
+                                    print(error)
+                                    Text("to delete account, sign out and log back and then re-try to delete account")// make this display if the deleteAccount func is not working
+                                }
+                            }
                         } label: {
                             Text("Delete Account")
                                 .foregroundColor(.red)
@@ -68,7 +85,7 @@ struct SettingsScreen: View {
             }//Form
         }//Main VStack
         .sheet(isPresented: $isEditProfileFormShowing) {
-            EditProfileForm()
+            EditProfileForm(settingsVM: settingsVM, isEditProfileFormShowing: $isSettingViewShowing)
                 
         }
     }
