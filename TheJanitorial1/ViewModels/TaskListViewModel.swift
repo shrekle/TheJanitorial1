@@ -41,9 +41,6 @@ final class TaskListViewModel: ObservableObject {
         
         DatabaseService.gitTasks { todos in
             self.tasks = todos
-            Task{
-                NotificationService.showNotification
-            }
         }
 //         try await withCheckedThrowingContinuation({ continuation in
 //            DatabaseService.gitTasks { tasks in
@@ -62,7 +59,7 @@ final class TaskListViewModel: ObservableObject {
         DatabaseService.deleteTask(todoID: todoID)
     }
     
-//    func taskListCleanUp() {
-//        DatabaseService.detachTaskListeners()
-//    }
+    func taskListCleanUp() {
+        DatabaseService.detachTaskListeners()
+    }
 }

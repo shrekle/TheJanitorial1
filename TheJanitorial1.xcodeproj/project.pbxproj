@@ -130,14 +130,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		CA3C4F1F29CA58C500CCDF20 /* Crap */ = {
+		CA3C4F1F29CA58C500CCDF20 /* CRAP */ = {
 			isa = PBXGroup;
 			children = (
 				CACA683C298B071E00611D89 /* TheJanitorial1App.swift */,
 				CA3C4F2D29CA983000CCDF20 /* AppDelegate.swift */,
 				CACA6840298B072000611D89 /* Assets.xcassets */,
 			);
-			path = Crap;
+			path = CRAP;
 			sourceTree = "<group>";
 		};
 		CA3C4F2229CA5C7800CCDF20 /* Registration Screens */ = {
@@ -232,7 +232,7 @@
 				CACA684C298B076B00611D89 /* Models */,
 				CA3C4F3429CB68C100CCDF20 /* Services */,
 				CABE35B829E612D1006EB047 /* Utilities */,
-				CA3C4F1F29CA58C500CCDF20 /* Crap */,
+				CA3C4F1F29CA58C500CCDF20 /* CRAP */,
 				CA4784A329C2481E00FDF4F1 /* Info.plist */,
 				CA3C4F3F29CBF20700CCDF20 /* GoogleService-Info.plist */,
 				CA4784A229C2471B00FDF4F1 /* TheJanitorial1.entitlements */,

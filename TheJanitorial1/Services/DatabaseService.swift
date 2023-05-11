@@ -18,8 +18,6 @@ final class DatabaseService {
     
     static var taskListener = [ListenerRegistration]()
     
-    static var listenerThang = [ListenerRegistration]()
-    
     static func setUserProfile(fullName: String, image: UIImage?, isJanitor: Bool, schoolCode: Int, completion: @escaping (Bool)-> Void) {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }
         
@@ -170,7 +168,6 @@ final class DatabaseService {
             
             todos.append(todo)
         }
-        
         return todos
     }
     
@@ -196,7 +193,15 @@ final class DatabaseService {
                     print("👻 Error decoding Todo object: \(error)")
                 }
             }
+            Task{
+                NotificationService.showNotification()
+                print("🤡 showNotification database : ")
+            }
+            
+            print("pre completion")
             completion(todos)
+            print("post completion")
+            
         }//listener
         taskListener.append(listener)
     }
@@ -212,11 +217,11 @@ final class DatabaseService {
         userQueer.delete()
     }
     
-//    static func detachTaskListeners() {
-//        taskListener.forEach { listener in
-//            listener.remove()
-//        }
-//    }
+    static func detachTaskListeners() {
+        taskListener.forEach { listener in
+            listener.remove()
+        }
+    }
     
     static func deleteAccount() async throws {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }

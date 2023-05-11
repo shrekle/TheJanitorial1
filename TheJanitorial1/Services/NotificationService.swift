@@ -9,7 +9,7 @@ import SwiftUI
 
 class NotificationService {
     
-   static func showNotification() async throws {
+   static func showNotification() {
         
         let center = UNUserNotificationCenter.current()
         
@@ -21,6 +21,10 @@ class NotificationService {
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
-        try await center.add(request)
+       center.add(request) { error in
+           if let error {
+               print("👀 contentView center.add : \(error)")
+           }
+       }
     }
 }

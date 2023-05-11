@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct MainRootContainer: View {
     
     @EnvironmentObject var loginVM: LoginViewModel
@@ -32,11 +33,15 @@ struct MainRootContainer: View {
         }
         .onChange(of: scenePhase) { newPhase  in
             if newPhase == .active {
+//                Task{
+//                        try await taskListVM.gitTasks()
+//                    }
                 print("active")
             } else if newPhase == .inactive {
                 print("inactive")
             } else if newPhase == .background {
                 print("background")
+                      UIApplication.shared.applicationIconBadgeNumber = 0
 //                taskListVM.taskListCleanUp()
             }
         }

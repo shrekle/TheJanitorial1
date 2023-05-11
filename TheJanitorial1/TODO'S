@@ -8,3 +8,4 @@ TODO'S:
  
  - add a buble or cicle or some crap to indicate which tasks i havent opened or clicked on
         -have a bool set to true on showing the buble and false once clicked on
+-disable buttons that upload or download data, and have them display ...loading

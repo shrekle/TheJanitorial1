@@ -12,6 +12,7 @@ final class SendTaskViewModel: ObservableObject {
     
     @Published var currentUser = UserModel()
     @Published var todo = Todo()
+    @Published var token: String? // this might not work or be need
     
     init() {
         Task {
