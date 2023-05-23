@@ -10,6 +10,7 @@ import FirebaseFirestoreSwift
 
 struct Todo: Codable, Identifiable {
     @DocumentID var id: String?
+    @ServerTimestamp var timestamp: Date?
     var userId: String?
     var fullName: String?
     var senderProfilePicUrl: String?
@@ -17,5 +18,5 @@ struct Todo: Codable, Identifiable {
     var eta: String?
     var custom: String?
     var imageUrl: String?
-    @ServerTimestamp var timestamp: Date?
+    var janitorToken: String?
 }

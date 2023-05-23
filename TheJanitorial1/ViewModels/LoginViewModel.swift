@@ -30,7 +30,6 @@ final class LoginViewModel: ObservableObject {
                 print("👤 loginViewModel init(): \(error)")
             }
         }
-           
     }
 
     func isLoggedIn() {

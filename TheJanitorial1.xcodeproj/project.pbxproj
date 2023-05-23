@@ -24,7 +24,6 @@
 		CA3C4F3829CB725D00CCDF20 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3729CB725C00CCDF20 /* UserModel.swift */; };
 		CA3C4F3A29CB7CC500CCDF20 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3929CB7CC500CCDF20 /* LoginViewModel.swift */; };
 		CA3C4F3C29CBB84600CCDF20 /* MainRootContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4F3B29CBB84600CCDF20 /* MainRootContainer.swift */; };
-		CA3C4F4029CBF20700CCDF20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA3C4F3F29CBF20700CCDF20 /* GoogleService-Info.plist */; };
 		CA4413BC29D1F2820072A107 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4413BB29D1F2820072A107 /* RegistrationViewModel.swift */; };
 		CA4413C629D255F00072A107 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4413C529D255EF0072A107 /* TaskListViewModel.swift */; };
 		CA4413C829D259CA0072A107 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4413C729D259CA0072A107 /* Todo.swift */; };
@@ -36,6 +35,7 @@
 		CA74118429D90230008CE1A1 /* SendTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74118329D90230008CE1A1 /* SendTaskViewModel.swift */; };
 		CA74118729D92CDD008CE1A1 /* TaskSentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74118629D92CDD008CE1A1 /* TaskSentScreen.swift */; };
 		CA74118929D93030008CE1A1 /* TaskContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74118829D93030008CE1A1 /* TaskContainer.swift */; };
+		CA8B41002A16774500B015A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA8B40FF2A16774500B015A2 /* GoogleService-Info.plist */; };
 		CA90C10329E777120023AF5F /* JanitorHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90C10229E777120023AF5F /* JanitorHomeScreen.swift */; };
 		CA90C10529E86C430023AF5F /* LoggedInRootContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90C10429E86C430023AF5F /* LoggedInRootContainer.swift */; };
 		CABE35B729E60423006EB047 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABE35B629E60423006EB047 /* CacheService.swift */; };
@@ -70,12 +70,10 @@
 		CA3C4F3729CB725C00CCDF20 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CA3C4F3929CB7CC500CCDF20 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CA3C4F3B29CBB84600CCDF20 /* MainRootContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRootContainer.swift; sourceTree = "<group>"; };
-		CA3C4F3F29CBF20700CCDF20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		CA4413BB29D1F2820072A107 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		CA4413C529D255EF0072A107 /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		CA4413C729D259CA0072A107 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		CA4784A229C2471B00FDF4F1 /* TheJanitorial1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheJanitorial1.entitlements; sourceTree = "<group>"; };
-		CA4784A329C2481E00FDF4F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CA4784A429C2488800FDF4F1 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		CA74050B2A0413BC004796B1 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		CA74116029D8C0DC008CE1A1 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
@@ -84,6 +82,7 @@
 		CA74118329D90230008CE1A1 /* SendTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTaskViewModel.swift; sourceTree = "<group>"; };
 		CA74118629D92CDD008CE1A1 /* TaskSentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSentScreen.swift; sourceTree = "<group>"; };
 		CA74118829D93030008CE1A1 /* TaskContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskContainer.swift; sourceTree = "<group>"; };
+		CA8B40FF2A16774500B015A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		CA90C10229E777120023AF5F /* JanitorHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JanitorHomeScreen.swift; sourceTree = "<group>"; };
 		CA90C10429E86C430023AF5F /* LoggedInRootContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRootContainer.swift; sourceTree = "<group>"; };
 		CABE35B629E60423006EB047 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
@@ -133,6 +132,7 @@
 		CA3C4F1F29CA58C500CCDF20 /* CRAP */ = {
 			isa = PBXGroup;
 			children = (
+				CA8B40FF2A16774500B015A2 /* GoogleService-Info.plist */,
 				CACA683C298B071E00611D89 /* TheJanitorial1App.swift */,
 				CA3C4F2D29CA983000CCDF20 /* AppDelegate.swift */,
 				CACA6840298B072000611D89 /* Assets.xcassets */,
@@ -233,8 +233,6 @@
 				CA3C4F3429CB68C100CCDF20 /* Services */,
 				CABE35B829E612D1006EB047 /* Utilities */,
 				CA3C4F1F29CA58C500CCDF20 /* CRAP */,
-				CA4784A329C2481E00FDF4F1 /* Info.plist */,
-				CA3C4F3F29CBF20700CCDF20 /* GoogleService-Info.plist */,
 				CA4784A229C2471B00FDF4F1 /* TheJanitorial1.entitlements */,
 				CACA6842298B072000611D89 /* Preview Content */,
 			);
@@ -365,9 +363,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CACA6844298B072000611D89 /* Preview Assets.xcassets in Resources */,
+				CA8B41002A16774500B015A2 /* GoogleService-Info.plist in Resources */,
 				CACA6841298B072000611D89 /* Assets.xcassets in Resources */,
 				CA203E5129FD6EFB006E6727 /* TODO'S in Resources */,
-				CA3C4F4029CBF20700CCDF20 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

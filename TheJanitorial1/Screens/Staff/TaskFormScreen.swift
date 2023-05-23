@@ -132,13 +132,15 @@ struct TaskFormScreen: View {
             Button {
                 Task {
                     do {
-                        let task = Todo(userId: sendTaskVM.currentUser.id,
+                        let task = Todo(timestamp: Date(),
+                                        userId: sendTaskVM.currentUser.id,
                                         fullName: sendTaskVM.currentUser.fullName,
                                         senderProfilePicUrl: sendTaskVM.currentUser.image,
                                         todo: textEditor,
                                         eta: eta.rawValue,
                                         custom: customTextField,
-                                        timestamp: Date())
+                                        janitorToken: "fhS1RUI6BUnzjXYhBZjaLU:APA91bEcZjDZW5F6Y0-1wboaXIa182QTkg14eOJ6atwROKVf4t1vv8q55vcb3qrJF9s9VcT1aH5CMtNR05CRo9AlqvyzfmDnu69FTmuqRzPqnQTjYBBukvyXLYa7cbKB3LOikIEjiqMv"
+                        )
                         
                         try await sendTaskVM.sendTask(todo: task, image: selectedImage)
                     } catch {

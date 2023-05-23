@@ -15,7 +15,7 @@ struct UserModel: Codable {
     var image: String?
     var isJanitor: Bool?
     var schoolCode: Int?
-   
+    var token: String?
 }
 
 //struct AuthDataResultModel {

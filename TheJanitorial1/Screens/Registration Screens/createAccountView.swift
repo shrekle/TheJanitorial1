@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import FirebaseMessaging
 
 enum JobDescription {
     case janitor
@@ -151,7 +152,10 @@ struct createAccountView: View {
                         } catch {
                             print("🥵 error in the button to register user: \(error)")
                         }
-                        DatabaseService.setUserProfile(fullName: fullName, image: selectedImage, isJanitor: isJanitor, schoolCode: school.rawValue) { isSuccess in
+                        
+                        let token = try await Messaging.messaging().token()
+                        
+                        DatabaseService.setUserProfile(fullName: fullName, image: selectedImage, isJanitor: isJanitor, schoolCode: school.rawValue, token: token) { isSuccess in
                             if isSuccess {
                                 Task {
                                     do {

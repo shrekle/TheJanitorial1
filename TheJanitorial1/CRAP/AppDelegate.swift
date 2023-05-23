@@ -13,8 +13,8 @@ import FirebaseMessaging
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     // one of deez two, not sure whats better
-    @EnvironmentObject var sendTaskVM: SendTaskViewModel
-    var token: String?
+//    @EnvironmentObject var sendTaskVM: SendTaskViewModel
+//    var token: String?
 
 
     let gcmMessageIDKey = "gcm.message_id"
@@ -71,8 +71,8 @@ extension AppDelegate: MessagingDelegate {
       let deviceToken:[String: String] = ["token": fcmToken ?? ""]
         
         //only ones of deez will be needed, not sure which one would be more legit
-        self.token = fcmToken
-        sendTaskVM.token = fcmToken
+//        self.token = fcmToken
+//        sendTaskVM.token = fcmToken// ithink i was trying this out but dont need it nomore and it didnt work
         
         print("Device token: ", deviceToken) // This token can be used for testing notifications on FCM
     }

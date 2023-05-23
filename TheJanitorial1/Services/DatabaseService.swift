@@ -18,7 +18,7 @@ final class DatabaseService {
     
     static var taskListener = [ListenerRegistration]()
     
-    static func setUserProfile(fullName: String, image: UIImage?, isJanitor: Bool, schoolCode: Int, completion: @escaping (Bool)-> Void) {
+    static func setUserProfile(fullName: String, image: UIImage?, isJanitor: Bool, schoolCode: Int, token: String, completion: @escaping (Bool)-> Void) {
         guard AuthViewModel.isUserLoggedIn() else { print("💩 user not logged, cant set profile"); return }
         
         let db = Firestore.firestore()
@@ -30,7 +30,7 @@ final class DatabaseService {
         let doc = db.collection(C.users).document(userId)
         
         //        TODO: change deez to the constant file properties
-        doc.setData(["fullName": fullName, "email": userEmail, "isJanitor": isJanitor, "schoolCode": schoolCode])
+        doc.setData(["fullName": fullName, "email": userEmail, "isJanitor": isJanitor, "schoolCode": schoolCode, "token": token])
         
         if let image {
             let dataImage = image.jpegData(compressionQuality: 0.1)
